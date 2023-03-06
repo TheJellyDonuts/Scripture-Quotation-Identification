@@ -38,7 +38,9 @@ class gword:
     # returns given verse reference
     def add_verse(self, verse):
         if verse in self.verse_occurences.keys():
-            self.verse_occurences[verse][1] += 1
+            v, c = self.verse_occurences[verse]
+            c += 1
+            self.verse_occurences[verse] = [v, c]
         else:
             self.verse_occurences.update({verse: 1})
 
