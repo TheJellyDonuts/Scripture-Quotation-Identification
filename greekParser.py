@@ -7,7 +7,7 @@ def remove_values_from_list(the_list, val):
 
 def parseGreek(filePath):
     # import file from filepath
-    with open(filePath, "r") as f:
+    with open(filePath, "r", encoding="utf-8") as f:
         raw_lines = f.readlines()
 
     # find lines
@@ -16,10 +16,11 @@ def parseGreek(filePath):
     for line in raw_lines:
         lineNum, txt = line.split(" ", 1)
         delimiters = []
-        for delim in re.finditer("·|.|;", txt):
+        for delim in re.finditer("·|\.|\;", txt):
             delimiters.append(txt[delim.start()])
-        lineClauses = re.split("·|.|;", txt)
-        for i in range(lineClauses.len):
+        lineClauses = re.split("·|\.|\;", txt)
+
+        for i in range(len(lineClauses) - 1):
             
             # find words
             words = lineClauses[i].split(" ")
@@ -34,6 +35,8 @@ def parseGreek(filePath):
             # clause[2] gives the punctuation at the end of the clause
 
     # return json file
+    jsf = open("testJSON.json", "w", encoding="utf-8")
+    json.dump(clauses, jsf)
     return json.dumps(clauses)
 
-print(parseGreek("./texts/001-i_clement.txt"))
+print(parseGreek("txttest.txt"))
