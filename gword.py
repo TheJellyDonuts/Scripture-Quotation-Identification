@@ -22,9 +22,9 @@ class gword:
 
     # set word to given word
     # returns the set word
-        def set_word(self, word):
-            self.word = word
-            return self.word
+    def set_word(self, word):
+        self.word = word
+        return self.word
         
 
     # append a variant to the variant list
@@ -54,7 +54,7 @@ class gword:
 
     # check through variants to see if given variant exists
     def is_variant(self, variant):
-        return variant in self.variants
+        return variant in self.variants or variant is self.word
     
     # import a JSON object and update this gword object
     def import_json(self, import_dict):
