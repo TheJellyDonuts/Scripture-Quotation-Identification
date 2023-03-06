@@ -15,10 +15,10 @@ The verse format is BookCCCVVV. Ex: Matthew010002 (Matthew 10:2)
 import json
 
 class gword:
-    def __init__(self, word="", variants=[], verse_occurences={}):
+    def __init__(self, word=""):
         self.word = word
-        self.variants = variants
-        self.verse_occurences = verse_occurences
+        self.variants = []
+        self.verse_occurences = {}
 
     # set word to given word
     # returns the set word
