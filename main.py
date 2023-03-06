@@ -73,12 +73,35 @@ def change_verse_id(dictname):
     return new_dict
 
 filename = 'words.csv'
+# Removes BOM at the beginning of the file
 remove_bom(filename)
+
+# Converts CSV file into a Dictionary
 data_dict = read_csv_to_dict(filename)
+
+# Renames the Dictionary's Keys to use Book Name instead of Book Number
 greek_dict = change_verse_id(data_dict)
 
-for row in greek_dict[1:100]:
-    print(greek_dict[row]['CollationID'] + " " + greek_dict[row]['Word'] + " " + greek_dict[row]['Accented'])
+# for row in greek_dict[1:100]:
+#     print(greek_dict[row]['CollationID'] + " " + greek_dict[row]['Word'] + " " + greek_dict[row]['Accented'])
 
-for key, value in itertools.islice(my_dict.items(), 10):
-    print(f"{key}: {value}")
+greek_words = []
+for key, value in itertools.islice(greek_dict.items(), 10):
+    in_array = False
+    for greek_word in greek_words:
+        # Checks to see if word is already in array
+        if(value['Word'] == greek_word.word):
+            # If word is in array, add verse to current word
+            greek_word.add_verse(key)
+            in_array = True
+            break
+    if not in_array:
+        # Sets Word Value
+        new_word = None
+        new_word = gword.gword(word=value['Word'])
+        print(new_word)
+        new_word.add_verse(key)
+        greek_words.append(new_word)
+
+for greek_word in greek_words:
+    print("Word: " + greek_word.word + " Count: " + str(greek_word.verse_occurences))
