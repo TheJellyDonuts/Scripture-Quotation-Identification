@@ -69,25 +69,22 @@ change_verse_id(data_array)
 
 greek_words = []
 for value in data_array[0:10]:
-    print(value)
+    in_array = False
+    verse_ref = value[headers.index("VerseID")]
+    array_word = value[headers.index("Word")]
+    for greek_word in greek_words:
+        # Checks to see if word is already in array
+        if(array_word == greek_word.word):
+            # If word is in array, add verse to current word
+            greek_word.add_verse(verse_ref)
+            in_array = True
+            break
+    if not in_array:
+        # Sets Word Value
+        new_word = gword.gword(word=array_word)
+        print(new_word)
+        new_word.add_verse(verse_ref)
+        greek_words.append(new_word)
 
-
-# for key, value in itertools.islice(greek_dict.items(), 10):
-#     in_array = False
-#     for greek_word in greek_words:
-#         # Checks to see if word is already in array
-#         if(value['Word'] == greek_word.word):
-#             # If word is in array, add verse to current word
-#             greek_word.add_verse(key)
-#             in_array = True
-#             break
-#     if not in_array:
-#         # Sets Word Value
-#         new_word = None
-#         new_word = gword.gword(word=value['Word'])
-#         print(new_word)
-#         new_word.add_verse(key)
-#         greek_words.append(new_word)
-
-# for greek_word in greek_words:
-#     print("Word: " + greek_word.word + " Count: " + str(greek_word.verse_occurences))
+for greek_word in greek_words:
+    print("Word: " + greek_word.word + " Count: " + str(greek_word.verse_occurences))
