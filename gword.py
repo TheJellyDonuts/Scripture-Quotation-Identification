@@ -12,6 +12,8 @@ is added to the dict.
 The verse format is BookCCCVVV. Ex: Matthew010002 (Matthew 10:2)
 '''
 
+import json
+
 class gword:
     def __init__(self, word="", variants=[], verse_occurences={}):
         self.word = word
@@ -42,3 +44,20 @@ class gword:
     # check through variants to see if given variant exists
     def is_variant(self, variant):
         return variant in self.variants
+    
+    def import_json(self, import_dict):
+        try:
+            self.word = import_dict["word"]
+            self.variants = import_dict["variants"]
+            self.verse_occurences = import_dict["verse_occurences"]
+        except:
+            print("Error encountered importing word object")
+
+    def export_json(self):
+        export_dict = {
+            "word": self.word,
+            "variants": self.variants,
+            "verse_occurences": self.verse_occurences
+        }
+        json_obj = json.dumps(export_dict, indent=4)
+        return json_obj
