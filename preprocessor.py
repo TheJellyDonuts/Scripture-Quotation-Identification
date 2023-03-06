@@ -76,6 +76,7 @@ for value in data_array[0:10]:
         # Checks to see if word is already in array
         if(array_word == greek_word.word):
             # If word is in array, add verse to current word
+            print(verse_ref)
             greek_word.add_verse(verse_ref)
             in_array = True
             break

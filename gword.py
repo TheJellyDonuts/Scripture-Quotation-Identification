@@ -42,7 +42,7 @@ class gword:
             c += 1
             self.verse_occurences[verse] = [v, c]
         else:
-            self.verse_occurences.update({verse: 1})
+            self.verse_occurences.update({verse: [verse, 1]})
 
         return verse
     
