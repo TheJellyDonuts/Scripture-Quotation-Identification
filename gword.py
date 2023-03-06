@@ -45,6 +45,7 @@ class gword:
     def is_variant(self, variant):
         return variant in self.variants
     
+    # import a JSON object and update this gword object
     def import_json(self, import_dict):
         try:
             self.word = import_dict["word"]
@@ -53,6 +54,7 @@ class gword:
         except:
             print("Error encountered importing word object")
 
+    # export this gword object to a JSON object
     def export_json(self):
         export_dict = {
             "word": self.word,
