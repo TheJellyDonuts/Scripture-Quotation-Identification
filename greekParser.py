@@ -52,9 +52,9 @@ def parseGreek(filePath):
             # clause[1] gives the array to find words in
             # clause[2] gives the punctuation at the end of the clause
 
-    # return json file
-    jsf = open("testJSON.json", "w", encoding="utf-8")
-    json.dump(clauses, jsf)
-    return json.dumps(clauses)
+    # return clause list
+    # jsf = open("testJSON.json", "w", encoding="utf-8")
+    # json.dump(clauses, jsf)
+    return clauses
 
 print(parseGreek("texts/001-i_clement.txt"))
