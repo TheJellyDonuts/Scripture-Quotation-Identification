@@ -20,20 +20,31 @@ class gword:
         self.variants = variants
         self.verse_occurences = verse_occurences
 
+    # set word to given word
+    # returns the set word
+        def set_word(self, word):
+            self.word = word
+            return self.word
+        
+
     # append a variant to the variant list
+    # returns given variant
     def add_variant(self, variant):
         self.variants.append(variant)
         return variant
 
     # insert a verse into verse dict
     # if verse already exists, increment existing verse
+    # returns given verse reference
     def add_verse(self, verse):
         if verse in self.verse_occurences.keys():
             self.verse_occurences[verse][1] += 1
         else:
             self.verse_occurences.update({verse: 1})
+
+        return verse
     
-    # get verse,count pair
+    # get [verse,count] pair
     def get_by_verse(self, verse):
         return self.verse_occurences[verse]
 
