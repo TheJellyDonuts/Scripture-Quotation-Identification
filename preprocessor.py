@@ -3,7 +3,12 @@ Stephen Venable
 03-06-2023
 
 NEW TESTAMENT PREPROCESSOR
-TODO <description needed>
+The goal of the preprocessor is to parse the data contained in words.csv
+into a list of gword objects and writes that to wordList.json.
+
+Explaination of functions:
+    1. remove_bom - removes binary object model indicator at the beginning of words.csv.
+    2. change_verse_id - changes verse id column to BooknameCCCVVVV format from BBBCCCVVV format
 '''
 
 import csv
@@ -77,8 +82,8 @@ change_verse_id(data_array)
 greek_words = []
 for value in data_array:
     in_array = False
-    verse_ref = value[headers.index("VerseID")].strip()
-    array_word = value[headers.index("Word")].strip()
+    verse_ref = value[headers.index("VerseID")]
+    array_word = value[headers.index("Word")]
     for greek_word in greek_words:
         # Checks to see if word is already in array
         if(array_word == greek_word.word):
@@ -93,7 +98,7 @@ for value in data_array:
         greek_words.append(new_word)
 
 # Print Greek Word Array as a JSON File
-with open('output.json', 'w') as f:
+with open('data/word_list.json', 'w') as f:
     f.writelines("[")
     lst = [word.export_json()+",\n" for word in greek_words]
     lst[-1] = lst[-1][:-2]+"\n"
