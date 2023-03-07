@@ -40,7 +40,7 @@ import gword
 # perform the data synthesis
 def synthesize(input_file):
     clauses, words = [], []
-    clauses = source_parser.parseGreek(input_file)
+    clauses = source_parser.parse_greek(input_file)
 
     # open data 
     with open('data/word_list.json', 'r') as f:
