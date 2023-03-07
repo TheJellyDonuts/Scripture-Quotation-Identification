@@ -1,7 +1,16 @@
+'''
+Kobe Couvion
+03-06-2023
+
+GUI
+TODO <description needed>
+'''
+
+
 # Import the gui library
 import PySimpleGUI as simpleGUI
 import os.path
-import greekParser
+import source_parser
 
 # Create variables to hold relevant values
 quote_file_name = None
@@ -75,7 +84,7 @@ while True:
     quote_file_name = values["-QUOTATION_FILE-"]
     if os.path.isfile(quote_file_name):
       # Process the input file and display the matching verses for the quotation
-      verse_data = greekParser.parseGreek(quote_file_name)
+      verse_data = source_parser.parseGreek(quote_file_name)
       window["-OUTPUT-"].update(verse_data)
     else:
       # Throw an exception for a nonexistent file

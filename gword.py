@@ -1,6 +1,8 @@
-# Kai Delsing
-# 3-6-2023
 '''
+Kai Delsing
+03-06-2023
+
+GREEK WORD (gword) OBJECT CLASS
 Creates a class gword (greek word) that has 3 attributes:
 - word # the word which this object is centered around
 - variants # other acceptable forms of the central word

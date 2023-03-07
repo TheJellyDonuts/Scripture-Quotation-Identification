@@ -33,12 +33,12 @@ At the completion of each clause, the versemap results are pushed to an output l
     cache and versemap.
 '''
 
-import greekParser
+import source_parser
 import json
 import gword
 
 clauses, words = [], []
-clauses = greekParser.parseGreek("texts/001-i_clement.txt")
+clauses = source_parser.parseGreek("texts/001-i_clement.txt")
 #with open('clauseList.json', 'r', encoding='UTF-8') as f:
 #    clauses = f.readlines()
 
