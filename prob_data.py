@@ -116,9 +116,11 @@ for clause in clauses:
 
 # output
 
-with open("prob_analysis_raw.txt", "a"):
-    output.writelines()
-    "\n\nWords not found:".writeline()
-    not_found.writelines()
+with open("prob_analysis_raw.txt", "a") as f:
+    f.writelines(output)
+
+with open("not_found_words.txt", 'a') as f:
+    f.writeline("\n\nWords not found:")
+    f.writelines(not_found)
 
 # TODO: actually do an analysis
