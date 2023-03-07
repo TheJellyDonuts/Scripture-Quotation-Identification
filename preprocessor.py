@@ -1,6 +1,5 @@
 import csv
 import gword
-import itertools
 
 books = {
     40: 'Matthew',
@@ -68,10 +67,10 @@ with open(filename, newline='') as csvfile:
 change_verse_id(data_array)
 
 greek_words = []
-for value in data_array[0:100]:
+for value in data_array:
     in_array = False
-    verse_ref = value[headers.index("VerseID")]
-    array_word = value[headers.index("Word")]
+    verse_ref = value[headers.index("VerseID")].strip()
+    array_word = value[headers.index("Word")].strip()
     for greek_word in greek_words:
         # Checks to see if word is already in array
         if(array_word == greek_word.word):
@@ -85,5 +84,10 @@ for value in data_array[0:100]:
         new_word.add_verse(verse_ref)
         greek_words.append(new_word)
 
-for greek_word in greek_words:
-    print("Word: " + greek_word.word + " Count: " + str(greek_word.verse_occurences))
+# Print Greek Word Array as a JSON File
+with open('output.json', 'w') as f:
+    f.writelines("[")
+    lst = [word.export_json()+",\n" for word in greek_words]
+    lst[-1] = lst[-1][:-2]+"\n"
+    f.writelines(lst)
+    f.writelines("]")
