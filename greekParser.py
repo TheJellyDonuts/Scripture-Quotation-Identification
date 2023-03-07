@@ -46,11 +46,13 @@ def parseGreek(filePath):
             words = remove_values_from_list(words, "και")
 
 
-            clauses.append((lineNum, words, delimiters[i]))
+            clauses.append({"line_number": lineNum, "words": words, "delimiters": delimiters[i]})
             # NOTE: the clauses have three values
             # clause[0] gives the line num string from the inputted txt file (the two period separated numbers shown at the beginning of a line)
             # clause[1] gives the array to find words in
             # clause[2] gives the punctuation at the end of the clause
+
+
 
     # return clause list
     # jsf = open("testJSON.json", "w", encoding="utf-8")
