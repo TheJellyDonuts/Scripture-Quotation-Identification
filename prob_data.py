@@ -91,7 +91,7 @@ def search_wordlist(word):
     return False
 
 # go through a clause for each word
-for clause in clauses[0:1]:
+for clause in clauses:
     for word in clause["words"]:
         found = False
 
@@ -128,6 +128,6 @@ for clause in clauses[0:1]:
 with open("prob_analysis_raw.json", "w") as f:
     json.dump(output, f)
 
-with open("not_found_words.txt", 'w') as f:
+with open("not_found_words.txt", 'w', errors='ignore') as f:
     f.writelines("Words not found:")
     f.writelines(not_found)
