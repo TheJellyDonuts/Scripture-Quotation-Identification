@@ -28,15 +28,15 @@ def parseGreek(filePath):
             # sanitize words
             # TODO: remove greek article adjectives from word list
 
-            clauses.append((lineNum, words, delimiters[i]))
+            clauses.append({"line_number": lineNum, "words": words, "delimiters": delimiters[i]})
             # NOTE: the clauses have three values
             # clause[0] gives the line num string from the inputted txt file (the two period separated numbers shown at the beginning of a line)
             # clause[1] gives the array to find words in
             # clause[2] gives the punctuation at the end of the clause
 
     # return json file
-    jsf = open("testJSON.json", "w", encoding="utf-8")
-    json.dump(clauses, jsf)
-    return json.dumps(clauses)
+    # jsf = open("testJSON.json", "w", encoding="utf-8")
+    # json.dump(clauses, jsf)
+    return clauses
 
 print(parseGreek("texts/001-i_clement.txt"))
