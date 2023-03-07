@@ -1,3 +1,14 @@
+'''
+Kai Delsing
+03-07-2023
+
+PROBABILISTIC ANALYSIS
+TODO <description needed>
+
+NOTE the python library numpy must be installed in order to run average_analysis 
+'''
+
+
 import math
 import numpy as np
 
@@ -7,8 +18,12 @@ outtext = []
 with open("prob_analysis_raw.json", "r") as f:
     clause_data = f.readlines()
 
+# performs a simple analysis, which finds the verse with the maximum number of
+# matches for a given clause
+# returns a list of 
 def simple_analysis():
-    for linenum, versemap in clause_data:
+    for clause in clause_data:
+        linenum, versemap = clause[0], clause[1]
         versedata = versemap.items()
         versedata.sort(key=lambda x: x[1])
         verse, n = versedata[0]

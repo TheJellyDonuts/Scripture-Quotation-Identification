@@ -1,3 +1,11 @@
+'''
+Stephen Venable
+03-06-2023
+
+NEW TESTAMENT PREPROCESSOR
+TODO <description needed>
+'''
+
 import csv
 import gword
 

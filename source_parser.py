@@ -1,17 +1,25 @@
-import json
+'''
+Michael White
+03-06-2023
+
+SOURCE GREEK PARSER
+TODO <description needed>
+'''
+
+
 import re
 
 # remove all items from a list with a given value 
 def remove_values_from_list(the_list, val):
    return [value for value in the_list if value != val]
 
-def parseGreek(filePath):
-    # import file from filepath
-    with open(filePath, "r", encoding="utf-8") as f:
+
+def parseGreek(input_file):
+    # import file from given filepath
+    with open(input_file, "r", encoding="utf-8") as f:
         raw_lines = f.readlines()
 
     # find lines
-    
     clauses = []
     for line in raw_lines:
         lineNum, txt = line.split(" ", 1)
@@ -52,11 +60,5 @@ def parseGreek(filePath):
             # clause[1] gives the array to find words in
             # clause[2] gives the punctuation at the end of the clause
 
-
-
     # return clause list
-    # jsf = open("testJSON.json", "w", encoding="utf-8")
-    # json.dump(clauses, jsf)
     return clauses
-
-# print(parseGreek("texts/001-i_clement.txt"))
