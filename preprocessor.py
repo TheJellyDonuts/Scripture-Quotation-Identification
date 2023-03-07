@@ -6,7 +6,7 @@ NEW TESTAMENT PREPROCESSOR
 The goal of the preprocessor is to parse the data contained in words.csv
 into a list of gword objects and writes that to wordList.json.
 
-Explaination of functions:
+Explanation of functions:
     1. remove_bom - removes binary object model indicator at the beginning of words.csv.
     2. change_verse_id - changes verse id column to BooknameCCCVVVV format from BBBCCCVVV format
 '''
