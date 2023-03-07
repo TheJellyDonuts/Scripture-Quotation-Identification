@@ -18,6 +18,7 @@ The output is described right above the return statement
 
 
 import re
+import diacritical
 
 # remove all items from a list with a given value 
 def remove_values_from_list(the_list, val):
@@ -26,7 +27,9 @@ def remove_values_from_list(the_list, val):
 
 def parse_greek(input_file):
     # import file from given filepath
-    with open(input_file, "r", encoding="utf-8") as f:
+    out_file = "data/filtered.txt"
+    diacritical.diacritical_filter(input_file, out_file)
+    with open(out_file, "r", encoding="utf-8") as f:
         raw_lines = f.readlines()
 
     # find lines
