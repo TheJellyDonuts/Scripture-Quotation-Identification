@@ -131,5 +131,3 @@ with open("prob_analysis_raw.json", "w") as f:
 with open("not_found_words.txt", 'w') as f:
     f.writelines("Words not found:")
     f.writelines(not_found)
-
-# TODO: actually do an analysis
