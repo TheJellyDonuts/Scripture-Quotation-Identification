@@ -26,7 +26,25 @@ def parseGreek(filePath):
             words = lineClauses[i].split(" ")
 
             # sanitize words
-            # TODO: remove greek article adjectives from word list
+            words = remove_values_from_list(words, "ο")
+            words = remove_values_from_list(words, "του")
+            words = remove_values_from_list(words, "το")
+            words = remove_values_from_list(words, "τον")
+            words = remove_values_from_list(words, "την")
+            words = remove_values_from_list(words, "η")
+            words = remove_values_from_list(words, "τω")
+            words = remove_values_from_list(words, "τησ")
+            words = remove_values_from_list(words, "των")
+            words = remove_values_from_list(words, "οι")
+            words = remove_values_from_list(words, "τη")
+            words = remove_values_from_list(words, "τα")
+            words = remove_values_from_list(words, "τουσ")
+            words = remove_values_from_list(words, "τοισ")
+            words = remove_values_from_list(words, "τασ")
+            words = remove_values_from_list(words, "ταισ")
+            words = remove_values_from_list(words, "αι")
+            words = remove_values_from_list(words, "και")
+
 
             clauses.append({"line_number": lineNum, "words": words, "delimiters": delimiters[i]})
             # NOTE: the clauses have three values
@@ -34,7 +52,9 @@ def parseGreek(filePath):
             # clause[1] gives the array to find words in
             # clause[2] gives the punctuation at the end of the clause
 
-    # return json file
+
+
+    # return clause list
     # jsf = open("testJSON.json", "w", encoding="utf-8")
     # json.dump(clauses, jsf)
     return clauses
