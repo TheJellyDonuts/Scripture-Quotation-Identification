@@ -13,6 +13,7 @@ quote_text = ""
 input_column = [
   [
     simpleGUI.Text("Select quotation file:"),
+    # Allow the user to choose a file to hold the input quotation
     simpleGUI.Input(key = "-QUOTATION_FILE-", enable_events = True),
     simpleGUI.FileBrowse(button_text = "Browse", target = "-QUOTATION_FILE-"),
   ],
@@ -20,11 +21,13 @@ input_column = [
     simpleGUI.Text("OR"),
   ],
   [
+    # Allow the user to simply paste a quotation as input
     simpleGUI.Text("Type/paste quotation here:"),
     simpleGUI.Input(size = (50, 4), enable_events = True, key = "-QUOTATION_TEXT-"),
   ],
   [
-    simpleGUI.Submit(button_text = "Find Verses"),
+    # Button to parse the input quotation and display the results
+    simpleGUI.Submit(button_text = "Find Verses", key = "-SUBMIT-"),
   ],
 ]
 
@@ -61,9 +64,16 @@ while True:
   if event == "Exit" or event == simpleGUI.WIN_CLOSED:
     break
   elif event == "-QUOTATION_FILE-":
+    # Grab the user-inputted file name and make sure it exists
     quote_file_name = values["-QUOTATION_FILE-"]
-    window["-OUTPUT-"].update(quote_file_name)
+    if os.path.isfile(quote_file_name):
+      # Display the file's text in the output window
+      window["-OUTPUT-"].update(quote_file_name)
+    else:
+      # Throw an exception for a nonexistent file
+      window["-OUTPUT-"].update("ERROR: File does not exist")
   elif event == "-QUOTATION_TEXT-":
     quote_text = values["-QUOTATION_TEXT-"]
     window["-OUTPUT-"].update(quote_text)
+
 window.close()
