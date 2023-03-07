@@ -17,7 +17,7 @@ input_column = [
     simpleGUI.Text("Select quotation file:"),
     # Allow the user to choose a file to hold the input quotation
     simpleGUI.Input(key = "-QUOTATION_FILE-", enable_events = True),
-    simpleGUI.FileBrowse(button_text = "Browse", target = "-QUOTATION_FILE-"),
+    simpleGUI.FileBrowse(button_text = "Browse", target = "-QUOTATION_FILE-", file_types=(("Text Files", "*.txt"))),
   ],
   [
     simpleGUI.Text("OR"),
