@@ -68,7 +68,7 @@ with open(filename, newline='') as csvfile:
 change_verse_id(data_array)
 
 greek_words = []
-for value in data_array[0:10]:
+for value in data_array[0:100]:
     in_array = False
     verse_ref = value[headers.index("VerseID")]
     array_word = value[headers.index("Word")]
@@ -76,14 +76,12 @@ for value in data_array[0:10]:
         # Checks to see if word is already in array
         if(array_word == greek_word.word):
             # If word is in array, add verse to current word
-            print(verse_ref)
             greek_word.add_verse(verse_ref)
             in_array = True
             break
     if not in_array:
         # Sets Word Value
         new_word = gword.gword(word=array_word)
-        print(new_word)
         new_word.add_verse(verse_ref)
         greek_words.append(new_word)
 
