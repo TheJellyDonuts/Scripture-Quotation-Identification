@@ -18,6 +18,9 @@ Usage:
 # Import libraries
 import sys
 import os.path
+import diacritical
+import source_parser
+import prob_data
 import prob_analysis
 
 # Get arguments
@@ -32,6 +35,18 @@ elif args[1] == "-f" and not os.path.isfile(args[2]):
   print("ERROR: File does not exist")
   exit(2)
 print("Yay")
+
+# Prep filename
+input_filename = ""
+input_file_existed = True
+if args[1] == "-f":
+  input_filename = args[2]
+elif args[1] == "-t":
+  # TODO: Create and populate a temporary file using user raw text
+  input_file_exsited = False
+
+# Sanitize text according to diacriticals
+
 
 # Analyze quotation
 if args[1] == "-f":
