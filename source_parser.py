@@ -24,7 +24,7 @@ def remove_values_from_list(the_list, val):
    return [value for value in the_list if value != val]
 
 
-def parseGreek(input_file):
+def parse_greek(input_file):
     # import file from given filepath
     with open(input_file, "r", encoding="utf-8") as f:
         raw_lines = f.readlines()
