@@ -10,7 +10,7 @@ NOTE the python library numpy must be installed in order to run average_analysis
 
 
 import math
-import numpy as np
+#import numpy as np
 
 
 outtext = []
