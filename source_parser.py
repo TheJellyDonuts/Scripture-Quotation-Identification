@@ -3,7 +3,17 @@ Michael White
 03-06-2023
 
 SOURCE GREEK PARSER
-TODO <description needed>
+Takes an input file and produces a list of clauses found in the file
+
+The file must be formatted with the diacritical filter found in diacritical.py
+The file must also be in koine greek and each line must start with an identifying line number followed by a spce character
+(e.g. "12.4  <Greek text>")
+
+The parser removes all the definite articles 
+It also splits the lines into clauses which are determined by being separated by the greek equivalents of the characters '.', ':' and '?'
+The re library provides regex functionality for splitting the lines
+
+The output is described right above the return statement
 '''
 
 
