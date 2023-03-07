@@ -34,16 +34,26 @@ At the completion of each clause, the versemap results are pushed to an output l
 '''
 
 import greekParser
-#import json
+import json
+import gword
 
-clauses, words = []
+clauses, words = [], []
 clauses = greekParser.parseGreek("texts/001-i_clement.txt")
 #with open('clauseList.json', 'r', encoding='UTF-8') as f:
 #    clauses = f.readlines()
 
 
 with open('wordList.json', 'r') as f:
-    words = f.readlines()
+    # words = f.readlines()
+    data = json.load(f)
+
+# Place Word Data in list of Objects
+words = []
+for word in data:
+    new_word_obj = gword.gword()
+    new_word_obj.import_json(word)
+    words.append(new_word_obj)
+
 
 cache = {} # word: [verse, occurences],[verse, occurences],...]
 
@@ -69,21 +79,19 @@ def check_cache(word):
     return False
 
 # add a new word-verselist pair to the cache
-def add_to_cache(pair):
-    word, verselist = pair
+def add_to_cache(word, verselist):
     cache.update({word: verselist})
 
 def search_wordlist(word):
     for word_obj in words:
-        if word_obj.is_variant(word):
-            
-            inc_versemap(word_obj.verse_occurences)
-            add_to_cache(word_obj)
+        if word_obj.is_match(word):
+            inc_versemap(word_obj.verse_occurences.values())
+            add_to_cache(word_obj.word, word_obj.verse_occurences.values())
             return True
     return False
 
 # go through a clause for each word
-for clause in clauses:
+for clause in clauses[0:1]:
     for word in clause["words"]:
         found = False
 
@@ -109,18 +117,19 @@ for clause in clauses:
     # TODO: deal with punctuation
 
     # add data to output and clear cache
-    output += [clause["line_number"], versemap]
+    # output += [clause["line_number"], versemap]
+    output.append([clause["line_number"], versemap.copy()])
     cache.clear()
     versemap.clear()
 
 
 # output
 
-with open("prob_analysis_raw.txt", "a") as f:
-    f.writelines(output)
+with open("prob_analysis_raw.json", "w") as f:
+    json.dump(output, f)
 
-with open("not_found_words.txt", 'a') as f:
-    f.writeline("\n\nWords not found:")
+with open("not_found_words.txt", 'w') as f:
+    f.writelines("Words not found:")
     f.writelines(not_found)
 
 # TODO: actually do an analysis
