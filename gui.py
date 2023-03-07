@@ -6,6 +6,9 @@ import os.path
 quote_file_name = ""
 quote_text = ""
 
+# create relevant functions to perform relevant tasks
+
+
 # create components for the input (left) side
 input_column = [
   [
@@ -21,7 +24,7 @@ input_column = [
     simpleGUI.Input(size = (50, 4), enable_events = True, key = "-QUOTATION_TEXT-"),
   ],
   [
-    simpleGUI.Submit(button_text = "Find Verse"),
+    simpleGUI.Submit(button_text = "Find Verses"),
   ],
 ]
 
