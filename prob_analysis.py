@@ -14,9 +14,7 @@ cache = {} # word: [[verse, occurences],[verse, occurences],...]
 # TODO: clear cache at some point? 
 
 versemap = {} # verse: occurences
-
 not_found = {}
-
 output = []
 
 def inc_versemap(verselist):
@@ -28,9 +26,18 @@ def inc_versemap(verselist):
             versemap[verse] += 1
         else:
             versemap.update({verse: 1})
-        
-def add_to_cache(versepair):
-    ... # TODO
+
+# return if the given word is found in cache 
+def check_cache(word):
+    # check if given word is in cache
+    if word in cache.keys():
+        return True
+    return False
+
+# add a new word-verselist pair to the cache
+def add_to_cache(pair):
+    word, verselist = pair
+    cache.update({word: verselist})
 
 for clause in clauses:
     # go through a clause for each word
@@ -38,7 +45,7 @@ for clause in clauses:
         found = False
 
         # search cache for the word; if found, increment
-        if word in cache:
+        if check_cache(word):
             found = True
             inc_versemap(cache[word])
 
@@ -48,8 +55,7 @@ for clause in clauses:
                 if word_obj.is_variant(word):
                     found = True
                     inc_versemap(word_obj.verse_occurences)
-                    # add to cache
-                    cache.update({word_obj.word: word_obj.verse_occurences})
+                    add_to_cache(word_obj)
 
         # if word not found in cache or wordlist, add to not_found
         # list. Keep track of occurences
@@ -60,8 +66,10 @@ for clause in clauses:
                 not_found[word] += 1
 
     # TODO: deal with punctuation
+    
+    # add data to output and clear cache
     output += [clause["line_number"], versemap]
-    # TODO: clear cache
+    cache.clear()
 
 
 # output
