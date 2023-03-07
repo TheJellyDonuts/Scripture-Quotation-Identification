@@ -1,12 +1,19 @@
-# Purpose:
-#   Command-Line Interface for analysing a greek
-#   quotation from a church father to see where
-#   they quoted scripture.
-# Usage:
-#   To analyze a quotation from a text file:
-#     python cli.py -f <filepath>
-#   To analyze a quotation from an input string:
-#     python cli.py -t "<input_string>"
+'''
+Kobe Couvion
+03-07-2023
+
+QUOTATION IDENTIFICATION CLI
+
+Purpose:
+  Creates a command-line interface for analyzing a
+  church father greek quotation from either a text file
+  or raw (greek) text input. 
+Usage:
+  To analyze a quotation from a text file:
+    python cli.py -f <filepath>
+  To analyze a quotation from an input string:
+    python cli.py -t "<input_string>"
+'''
 
 # Import libraries
 import sys
