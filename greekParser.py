@@ -59,4 +59,4 @@ def parseGreek(filePath):
     # json.dump(clauses, jsf)
     return clauses
 
-print(parseGreek("texts/001-i_clement.txt"))
+# print(parseGreek("texts/001-i_clement.txt"))

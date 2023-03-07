@@ -1,15 +1,17 @@
-# import the gui library
+# Import the gui library
 import PySimpleGUI as simpleGUI
 import os.path
+import greekParser
 
-# create variables to hold relevant values
-quote_file_name = ""
-quote_text = ""
+# Create variables to hold relevant values
+quote_file_name = None
+quote_text = None
+verse_data = None
 
-# create relevant functions to perform relevant tasks
+# Create relevant functions to perform relevant tasks
 
 
-# create components for the input (left) side
+# Create components for the input (left) side
 input_column = [
   [
     simpleGUI.Text("Select quotation file:"),
@@ -31,21 +33,23 @@ input_column = [
   ],
 ]
 
-# create components for the output (right) side
+# Create components for the output (right) side
 output_column = [
   [
     simpleGUI.Text("Matching verse(s):"),
   ],
   [
+    # Create a window for displaying the matching verses
     simpleGUI.Output(key = "-OUTPUT-"),
   ],
   [
+    # Provide helpful buttons for the user
     simpleGUI.Help("Help"),
     simpleGUI.Exit("Exit"),
   ],
 ]
 
-# create the layout using our columns
+# Create the layout using our columns
 layout = [
   [
     simpleGUI.Column(input_column),
@@ -54,21 +58,25 @@ layout = [
   ],
 ]
 
-# create the window using our layout
+# Create the window using our layout and a cool theme
 simpleGUI.theme("SandyBeach")
 window = simpleGUI.Window("Scripture Quotation Identification", layout)
 
-# run the event loop
+# Run the event loop
 while True:
   event, values = window.read()
+
+  # Close the window when appropriate
   if event == "Exit" or event == simpleGUI.WIN_CLOSED:
     break
+
+  # Update the user's input file name
   elif event == "-QUOTATION_FILE-":
-    # Grab the user-inputted file name and make sure it exists
     quote_file_name = values["-QUOTATION_FILE-"]
     if os.path.isfile(quote_file_name):
-      # Display the file's text in the output window
-      window["-OUTPUT-"].update(quote_file_name)
+      # Process the input file and display the matching verses for the quotation
+      verse_data = greekParser.parseGreek(quote_file_name)
+      window["-OUTPUT-"].update(verse_data)
     else:
       # Throw an exception for a nonexistent file
       window["-OUTPUT-"].update("ERROR: File does not exist")
