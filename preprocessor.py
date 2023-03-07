@@ -39,6 +39,7 @@ books = {
     66: 'Revelation'
 }
 
+# TODO <description needed>
 def remove_bom(filename):
     # Read the file as bytes
     with open(filename, 'rb') as f:
@@ -54,12 +55,15 @@ def remove_bom(filename):
         with open(filename, 'wb') as f:
             f.write(content)
 
+# TODO <description needed>
 def change_verse_id(array):
     for row in array:
         book_index = int(str(row[0])[:2])
         new_verse_id = books[book_index]+str(row[0])[2:]
         row[0] = new_verse_id
     return array
+
+# TODO <description needed>
 
 filename = 'words.csv'
 # Removes BOM at the beginning of the file
@@ -93,7 +97,7 @@ for value in data_array:
         greek_words.append(new_word)
 
 # Print Greek Word Array as a JSON File
-with open('output.json', 'w') as f:
+with open('data/word_list.json', 'w') as f:
     f.writelines("[")
     lst = [word.export_json()+",\n" for word in greek_words]
     lst[-1] = lst[-1][:-2]+"\n"

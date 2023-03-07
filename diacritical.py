@@ -2,7 +2,7 @@
 Stephen Venable
 03-06-2023
 
-DIACRITICAL FILTER
+~ ~ DIACRITICAL FILTER ~ ~
 This program performs the equivalent function of the Center for New Testament Restoration
     Greek Character Tool (https://greekcntr.org/charutil/index.htm). It takes in a document
     from a given filepathin Greek unicode, removes diacritical marks, lowercases the text, 
