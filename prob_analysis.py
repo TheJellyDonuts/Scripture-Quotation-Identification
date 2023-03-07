@@ -2,7 +2,7 @@
 Kai Delsing
 03-07-2023
 
-PROBABILISTIC ANALYSIS
+~ ~ PROBABILISTIC ANALYSIS ~ ~
 TODO <description needed>
 
 NOTE the python library numpy must be installed in order to run average_analysis 
@@ -15,7 +15,7 @@ import numpy as np
 
 outtext = []
 
-with open("prob_analysis_raw.json", "r") as f:
+with open("data/prob_analysis_raw.json", "r") as f:
     clause_data = f.readlines()
 
 # performs a simple analysis, which finds the verse with the maximum number of
