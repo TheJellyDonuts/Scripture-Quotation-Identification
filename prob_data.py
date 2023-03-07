@@ -36,7 +36,7 @@ At the completion of each clause, the versemap results are pushed to an output l
 import greekParser
 #import json
 
-clauses, words = []
+clauses, words = [], []
 clauses = greekParser.parseGreek("texts/001-i_clement.txt")
 #with open('clauseList.json', 'r', encoding='UTF-8') as f:
 #    clauses = f.readlines()
@@ -122,5 +122,3 @@ with open("prob_analysis_raw.txt", "a") as f:
 with open("not_found_words.txt", 'a') as f:
     f.writeline("\n\nWords not found:")
     f.writelines(not_found)
-
-# TODO: actually do an analysis
