@@ -46,7 +46,7 @@ def synthesize(input_file):
     with open('data/word_list.json', 'r') as f:
         data = json.load(f)
 
-    # Place Word Data in list of Objects
+    # place word data in list of objects
     words = []
     for word in data:
         new_word_obj = gword.gword()
@@ -54,15 +54,14 @@ def synthesize(input_file):
         words.append(new_word_obj)
 
 
-    cache = {} # word: [verse, occurences],[verse, occurences],...]
+    cache = {}      # word: [verse, occurences],[verse, occurences],...]
 
-    versemap = {} # verse: occurences
-    not_found = {}
-    output = []
+    versemap = {}   # {verse: occurences, ...}
+    not_found = {}  # {word: occurences, ...}
+    output = []     # {line#, [[verse, occurences],[verse, occurences],...], ...}
 
     # increment the versemap for each verse in verselist
     def inc_versemap(verselist):
-        # [verse, occurences]
         # TODO: this doesn't deal with the fact that some words are more common in certain verses
         for verse, occurences in verselist:
             if verse in versemap:
@@ -81,6 +80,7 @@ def synthesize(input_file):
     def add_to_cache(word, verselist):
         cache.update({word: verselist})
 
+    # iterate through wordlist to find if any of the words match
     def search_wordlist(word):
         for word_obj in words:
             if word_obj.is_match(word):
@@ -115,7 +115,7 @@ def synthesize(input_file):
                 else:
                     not_found[word] += 1
 
-        # TODO: deal with punctuation
+        # TODO: deal with punctuation?
 
         # add data to output and clear cache
         # output += [clause["line_number"], versemap]
