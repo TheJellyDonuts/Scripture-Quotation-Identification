@@ -17,6 +17,8 @@ versemap = {} # verse: occurences
 
 not_found = {}
 
+output = []
+
 def inc_versemap(verselist):
     # [verse, occurences]
     # increment occurences
@@ -28,7 +30,7 @@ def inc_versemap(verselist):
             versemap.update({verse: 1})
         
 def add_to_cache(versepair):
-    ...
+    ... # TODO
 
 for clause in clauses:
     # go through a clause for each word
@@ -43,7 +45,7 @@ for clause in clauses:
         # search wordlist & variants for the word
         else:
             for word_obj in words:
-                if word_obj.is_variant():
+                if word_obj.is_variant(word):
                     found = True
                     inc_versemap(word_obj.verse_occurences)
                     # add to cache
@@ -58,10 +60,15 @@ for clause in clauses:
                 not_found[word] += 1
 
     # TODO: deal with punctuation
+    output += [clause["line_number"], versemap]
+    # TODO: clear cache
 
 
 # output
 
+with open("prob_analysis_raw.txt", "wr"):
+    output.writelines()
+    "\n\nWords not found:".writeline()
+    not_found.writelines()
 
-
-
+# TODO: actually do an analysis
