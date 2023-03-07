@@ -13,3 +13,4 @@ def simple_analysis():
         versedata.sort(key=lambda x: x[1])
         verse, n = versedata[0]
         outtext += f'Line {linenum} is most likely {verse}, with {n} matches!'
+        return outtext
