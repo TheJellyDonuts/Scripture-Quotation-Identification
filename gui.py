@@ -9,7 +9,8 @@ quote_text = None
 verse_data = None
 
 # Create relevant functions to perform relevant tasks
-
+def findVerses(filename):
+  return greekParser.parseGreek(filename)
 
 # Create components for the input (left) side
 input_column = [
@@ -40,7 +41,7 @@ output_column = [
   ],
   [
     # Create a window for displaying the matching verses
-    simpleGUI.Output(key = "-OUTPUT-"),
+    simpleGUI.Multiline(autoscroll = True, disabled = True, horizontal_scroll = False, key = "-OUTPUT-", size = (50, 10)),
   ],
   [
     # Provide helpful buttons for the user
@@ -73,15 +74,18 @@ while True:
   # Update the user's input file name
   elif event == "-QUOTATION_FILE-":
     quote_file_name = values["-QUOTATION_FILE-"]
-    if os.path.isfile(quote_file_name):
-      # Process the input file and display the matching verses for the quotation
-      verse_data = greekParser.parseGreek(quote_file_name)
-      window["-OUTPUT-"].update(verse_data)
-    else:
-      # Throw an exception for a nonexistent file
-      window["-OUTPUT-"].update("ERROR: File does not exist")
+
+  # Update the user's manual text quotation
   elif event == "-QUOTATION_TEXT-":
     quote_text = values["-QUOTATION_TEXT-"]
-    window["-OUTPUT-"].update(quote_text)
+
+  # Analyze the quotation(s)
+  elif event == "-SUBMIT-":
+    if os.path.isfile(quote_file_name):
+      # Process the input file and display the matching verses for the quotation
+      verse_data = findVerses(quote_file_name)
+    else:
+      # Display an error message for a nonexistent file
+      window["-OUTPUT"].update("ERROR: File does not exist")
 
 window.close()
