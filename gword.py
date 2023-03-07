@@ -17,7 +17,6 @@ import json
 class gword:
     def __init__(self, word=""):
         self.word = word
-        self.variants = []
         self.verse_occurences = {}
 
     # set word to given word
@@ -26,13 +25,6 @@ class gword:
         self.word = word
         return self.word
         
-
-    # append a variant to the variant list
-    # returns given variant
-    def add_variant(self, variant):
-        self.variants.append(variant)
-        return variant
-
     # insert a verse into verse dict
     # if verse already exists, increment existing verse
     # returns given verse reference
@@ -55,14 +47,13 @@ class gword:
         return self.verse_occurences[verse][1]
 
     # check through variants to see if given variant exists
-    def is_variant(self, variant):
-        return variant in self.variants or variant is self.word
+    def is_match(self, matched):
+        return matched == self.word
     
     # import a JSON object and update this gword object
     def import_json(self, import_dict):
         try:
             self.word = import_dict["word"]
-            self.variants = import_dict["variants"]
             self.verse_occurences = import_dict["verse_occurences"]
         except:
             print("Error encountered importing word object")
@@ -71,7 +62,6 @@ class gword:
     def export_json(self):
         export_dict = {
             "word": self.word,
-            "variants": self.variants,
             "verse_occurences": self.verse_occurences
         }
         json_obj = json.dumps(export_dict, indent=4)
