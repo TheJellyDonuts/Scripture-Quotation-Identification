@@ -63,8 +63,8 @@ def average_analysis():
 
             outtext += f'Line {linenum} is most likely {verse}, with {n} matches ({n-av} above average)!'
 
-        # iff outtext empty, grab top
+        # if there are no verses above av+stdev, grab the max and send to outtext
         if len(outtext) == 0:
             verse, n = versedata[0]
-            outtext += f'Line {linenum} is most likely {verse}, with {n} matches ({n-av} above average)!'
+            outtext += f'Line {linenum} has no outstanding verse matches. The closest match is {verse}.'
         return outtext
