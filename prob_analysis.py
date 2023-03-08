@@ -50,8 +50,10 @@ def average_analysis():
         versedata = list(versemap.items())
         versedata.sort(key=lambda x: x[1], reverse = True)
         av = 0
+        nums = []
         for num in versedata[1]:
             av += num
+            nums += num
         av = math.ceil(av/len(versedata))
         above_av = []
         sd = np.std(nums)
