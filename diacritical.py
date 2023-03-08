@@ -32,5 +32,4 @@ def diacritical_filter(input_file, output_file):
     # generate a new output file
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(clean_text)
-        return output_file
 

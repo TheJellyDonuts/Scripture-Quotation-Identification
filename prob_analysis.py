@@ -29,10 +29,9 @@ def simple_analysis():
     outtext = []
     for clause in clause_data:
         linenum, versemap = clause[0], clause[1]
-        versedata = versemap.items()
-
+        versedata = list(versemap.items())
         # sort items by occurence
-        versedata.sort(key=lambda x: x[1], reverse=True)
+        versedata.sort(key=lambda x: x[1], reverse = True)
 
         # grab top item (most occurences)
         verse, n = versedata[0]
@@ -46,15 +45,17 @@ def simple_analysis():
 # average + stdev
 # returns a list of results by clause (the outtext+=... line)
 def average_analysis():
-    outtext = []
-    above = []
-    for linenum, versemap in clause_data:
-        versedata = versemap.items()
-        versedata.sort(key=lambda x: x[1], reverse=True)
-        nums = [num for num in versedata[1]]
-
-        # get average and standard deviation
-        av = math.ceil(np.average(nums))
+    for clause in clause_data:
+        linenum, versemap = clause[0], clause[1]
+        versedata = list(versemap.items())
+        versedata.sort(key=lambda x: x[1], reverse = True)
+        av = 0
+        nums = []
+        for num in versedata[1]:
+            av += num
+            nums += num
+        av = math.ceil(av/len(versedata))
+        above_av = []
         sd = np.std(nums)
 
         # if given verse's occurences is outside of the stdev of the average,

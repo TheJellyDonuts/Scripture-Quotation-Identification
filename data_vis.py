@@ -11,9 +11,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import json
 
+# open file to use
 with open("data/prob_analysis_raw.json", "r") as f:
     clause_data = json.load(f)
 
+# dictionary for book index and abbreviation
 ntDict = {
     "Matthew": (40, "Matt"),
     "Mark": (41, "Mark"),
@@ -44,11 +46,15 @@ ntDict = {
     "Revelation": (66, "Rev")
 }
 
-# array of linenum, verse, matchval
+def genStackedBar(numBars = 50, matchThreshold = 5, bibleOrdered = True):
+    for clause in clause_data:
+        linenum, versemap = clause[0], clause[1]
+        versedata = list(versemap.items())
+        versedata.sort(key=lambda x: x[1], reverse = True)
+        
 
-# get data for analysis
 
-# bar graph of one verse
+# bar graph of one clause
 def genGraph(lineNum, verseData, numBars = 50, matchThreshold = 0):
 
     # initialize arrays
