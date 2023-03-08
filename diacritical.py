@@ -14,7 +14,8 @@ NOTE the python library unicodedata is required to be installed in order to run 
 import unicodedata
 
 # filter data in input_file, and send the results to output_file
-def diacritical_filter(input_file, output_file):
+def diacritical_filter(input_file):
+    # read in the text from the input file
     with open(input_file, "r", encoding="utf-8") as f:
         greek_text = f.read()
 
@@ -28,5 +29,8 @@ def diacritical_filter(input_file, output_file):
     # replace semicolons with middle dot
     clean_text = clean_text.replace(";", "·")
 
+    # generate a new output file
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(clean_text)
+        return output_file
+
