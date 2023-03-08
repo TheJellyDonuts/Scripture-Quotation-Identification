@@ -34,7 +34,6 @@ if args.__len__() != 3:
 elif args[1] == "-f" and not os.path.isfile(args[2]):
   print("ERROR: File does not exist")
   exit(2)
-print("Yay")
 
 # Prep filename
 input_filename = ""
@@ -49,8 +48,10 @@ elif args[1] == "-t":
 prob_data.synthesize(input_filename)
 
 # Analyze the probability data against the Greek New Testament
-output_lines = prob_analysis.simple_analysis()
+output_list = prob_analysis.simple_analysis()
 
 # Print analysis results
-for line in output_lines:
-  print(line)
+output = ""
+for char in output_list:
+  output+= char
+print(output)
