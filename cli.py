@@ -45,14 +45,12 @@ elif args[1] == "-t":
   # TODO: Create and populate a temporary file using user raw text
   input_file_exsited = False
 
-# Sanitize text according to diacriticals
+# Parse the input and generate probabilit data
+prob_data.synthesize(input_filename)
 
-
-# Analyze quotation
-if args[1] == "-f":
-  quote_filename = args[2]
-# TODO: Generalize the parse and analysis functions to take any file as input
-verse_analysis = prob_analysis.simple_analysis()
+# Analyze the probability data against the Greek New Testament
+output_lines = prob_analysis.simple_analysis()
 
 # Print analysis results
-print(verse_analysis)
+for line in output_lines:
+  print(line)
