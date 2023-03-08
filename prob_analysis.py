@@ -3,7 +3,12 @@ Kai Delsing
 03-07-2023
 
 ~ ~ PROBABILISTIC ANALYSIS ~ ~
-TODO <description needed>
+Analyze the data created by the probabalistic data synthesis (prob_data). Multiple
+methods of analysis are used:
+1. simple_analysis
+    - find the verse with the maxmimum number of verse occurences
+2. average_analysis
+    - find verses with more occurences than the average + standard deviation
 
 NOTE the python library numpy must be installed in order to run average_analysis 
 '''
@@ -24,10 +29,9 @@ def simple_analysis():
     outtext = []
     for clause in clause_data:
         linenum, versemap = clause[0], clause[1]
-        versedata = versemap.items()
-
+        versedata = list(versemap.items())
         # sort items by occurence
-        versedata.sort(key=lambda x: x[1])
+        versedata.sort(key=lambda x: x[1], reverse = True)
 
         # grab top item (most occurences)
         verse, n = versedata[0]
@@ -41,15 +45,15 @@ def simple_analysis():
 # average + stdev
 # returns a list of results by clause (the outtext+=... line)
 def average_analysis():
-    outtext = []
-    above = []
-    for linenum, versemap in clause_data:
-        versedata = versemap.items()
-        versedata.sort(key=lambda x: x[1])
-        nums = [num for num in versedata[1]]
-
-        # get average and standard deviation
-        av = math.ceil(np.average(nums))
+    for clause in clause_data:
+        linenum, versemap = clause[0], clause[1]
+        versedata = list(versemap.items())
+        versedata.sort(key=lambda x: x[1], reverse = True)
+        av = 0
+        for num in versedata[1]:
+            av += num
+        av = math.ceil(av/len(versedata))
+        above_av = []
         sd = np.std(nums)
 
         # if given verse's occurences is outside of the stdev of the average,
@@ -66,5 +70,5 @@ def average_analysis():
         for v in above:
             verse, n = v[0]
             outtext += f'Line {linenum} is most likely {verse}, with {n} matches ({n-av} above average)!'
-            
+
         return outtext

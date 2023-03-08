@@ -3,20 +3,33 @@ Michael White
 03-06-2023
 
 SOURCE GREEK PARSER
-TODO <description needed>
+Takes an input file and produces a list of clauses found in the file
+
+The file must be formatted with the diacritical filter found in diacritical.py
+The file must also be in koine greek and each line must start with an identifying line number followed by a spce character
+(e.g. "12.4  <Greek text>")
+
+The parser removes all the definite articles 
+It also splits the lines into clauses which are determined by being separated by the greek equivalents of the characters '.', ':' and '?'
+The re library provides regex functionality for splitting the lines
+
+The output is described right above the return statement
 '''
 
 
 import re
+import diacritical
 
 # remove all items from a list with a given value 
 def remove_values_from_list(the_list, val):
    return [value for value in the_list if value != val]
 
 
-def parseGreek(input_file):
+def parse_greek(input_file):
     # import file from given filepath
-    with open(input_file, "r", encoding="utf-8") as f:
+    out_file = "data/filtered.txt"
+    diacritical.diacritical_filter(input_file, out_file)
+    with open(out_file, "r", encoding="utf-8") as f:
         raw_lines = f.readlines()
 
     # find lines
