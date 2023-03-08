@@ -24,16 +24,17 @@ with open("data/prob_analysis_raw.json", "r") as f:
 def simple_analysis():
     for clause in clause_data:
         linenum, versemap = clause[0], clause[1]
-        versedata = versemap.items()
-        versedata.sort(key=lambda x: x[1])
+        versedata = list(versemap.items())
+        versedata.sort(key=lambda x: x[1], reverse = True)
         verse, n = versedata[0]
         outtext += f'Line {linenum} is most likely {verse}, with {n} matches!'
         return outtext
     
 def average_analysis():
-    for linenum, versemap in clause_data:
-        versedata = versemap.items()
-        versedata.sort(key=lambda x: x[1])
+    for clause in clause_data:
+        linenum, versemap = clause[0], clause[1]
+        versedata = list(versemap.items())
+        versedata.sort(key=lambda x: x[1], reverse = True)
         av = 0
         for num in versedata[1]:
             av += num
