@@ -35,16 +35,16 @@ def parse_greek(input_file):
     # find lines
     clauses = []
     for line in raw_lines:
-        lineNum, txt = line.split(" ", 1)
+        line_num, txt = line.split(" ", 1)
         delimiters = []
         for delim in re.finditer("·|\.|\;", txt):
             delimiters.append(txt[delim.start()])
-        lineClauses = re.split("·|\.|\;", txt)
+        line_clauses = re.split("·|\.|\;", txt)
 
-        for i in range(len(lineClauses) - 1):
+        for i in range(len(line_clauses) - 1):
             
             # find words
-            words = lineClauses[i].split(" ")
+            words = line_clauses[i].split(" ")
 
             # sanitize words
             words = remove_values_from_list(words, "ο")
@@ -67,7 +67,7 @@ def parse_greek(input_file):
             words = remove_values_from_list(words, "και")
 
 
-            clauses.append({"line_number": lineNum, "words": words, "delimiters": delimiters[i]})
+            clauses.append({"line_number": line_num, "words": words, "delimiters": delimiters[i]})
             # NOTE: the clauses have three values
             # clause[0] gives the line num string from the inputted txt file (the two period separated numbers shown at the beginning of a line)
             # clause[1] gives the array to find words in
