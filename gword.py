@@ -4,9 +4,9 @@ Kai Delsing
 
 ~ ~ GREEK WORD (gword) OBJECT CLASS ~ ~
 Creates a class gword (greek word) that has 3 attributes:
-- word # the word which this object is centered around
-- variants # other acceptable forms of the central word
-- verse occurences # a dict with keys as verses, and values being 
+- word: the word which this object is centered around
+- variants:  other acceptable forms of the central word
+- verse occurences: a dict with keys as verses, and values being 
                     a list [verse, count]
 When add_verse() is called, if the verse already exists, its 
 respective counter is incremented. Otherwise, a new verse pair
