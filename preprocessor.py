@@ -6,9 +6,6 @@ NEW TESTAMENT PREPROCESSOR
 The goal of the preprocessor is to parse the data contained in words.csv
 into a list of gword objects and writes that to wordList.json.
 
-Explaination of functions:
-    1. remove_bom - removes binary object model indicator at the beginning of words.csv.
-    2. change_verse_id - changes verse id column to BooknameCCCVVVV format from BBBCCCVVV format
 '''
 
 import csv
@@ -44,7 +41,7 @@ books = {
     66: 'Revelation'
 }
 
-# TODO <description needed>
+# Removes binary object model indicator at the beginning of words.csv.
 def remove_bom(filename):
     # Read the file as bytes
     with open(filename, 'rb') as f:
@@ -60,15 +57,13 @@ def remove_bom(filename):
         with open(filename, 'wb') as f:
             f.write(content)
 
-# TODO <description needed>
+# Changes verse id column from BBBCCCVVV format to BooknameCCCVVVV format
 def change_verse_id(array):
     for row in array:
         book_index = int(str(row[0])[:2])
         new_verse_id = books[book_index]+str(row[0])[2:]
         row[0] = new_verse_id
     return array
-
-# TODO <description needed>
 
 filename = 'words.csv'
 # Removes BOM at the beginning of the file
@@ -83,6 +78,7 @@ with open(filename, newline='') as csvfile:
 # Renames the Verses's ID to use Book Name instead of Book Number
 change_verse_id(data_array)
 
+# Loops through csv data to format csv data in gword objects 
 greek_words = []
 for value in data_array:
     in_array = False
