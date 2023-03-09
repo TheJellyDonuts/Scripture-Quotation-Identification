@@ -3,7 +3,22 @@ Kobe Couvion
 03-06-2023
 
 ~ ~ GUI ~ ~
-TODO <description needed>
+Purpose:
+  Provide an easy to use interface for an end
+  user to interact with the scripture quotation
+  identification tool. The goal for this GUI is
+  to generate a stand-alone executable such that
+  a user with little to no technical knowledge
+  can easily run the program without worrying
+  about any extra configurations for their machine.
+Dev Help:
+  This GUI implements features of the PySimpleGUI
+  library, which provides an event-driven interface
+  to the user based primarily on key presses and
+  button click events. The event loop manages the
+  actions to take for each possible event, and the
+  data associated with each event key. For library
+  info, visit pysimplegui.org.
 '''
 
 
