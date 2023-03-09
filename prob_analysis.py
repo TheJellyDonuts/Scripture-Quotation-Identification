@@ -60,7 +60,7 @@ def average_analysis():
         # if given verse's occurences is outside of the stdev of the average,
         # add to list
         for v in versedata:
-            if v[1] > (av + sd):
+            if v[1] > math.ceil(av + sd):
                 above += v
         
         # if there are no verses above av+stdev, grab the max and send to outtext
