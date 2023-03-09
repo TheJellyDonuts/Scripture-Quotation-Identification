@@ -5,7 +5,7 @@ Kai Delsing
 ~ ~ GREEK CLAUSE (gclause) OBJECT CLASS ~ ~
 Creates a class gclause (greek clause) that has 3 attributes:
 - clause: the sentence/clause which this object is centered around
-- identifier: (optional) the prefix identifier that makes this line
+- identifier: the prefix identifier that makes this line
                distinct (i.e. 1.1)
 - words: a list of Greek word strings (not gwords)
 
