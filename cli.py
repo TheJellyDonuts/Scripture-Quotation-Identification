@@ -2,7 +2,7 @@
 Kobe Couvion
 03-07-2023
 
-QUOTATION IDENTIFICATION CLI
+~ ~ QUOTATION IDENTIFICATION CLI ~ ~
 
 Purpose:
   Creates a command-line interface for analyzing a
@@ -34,7 +34,6 @@ if args.__len__() != 3:
 elif args[1] == "-f" and not os.path.isfile(args[2]):
   print("ERROR: File does not exist")
   exit(2)
-print("Yay")
 
 # Prep filename
 input_filename = ""
@@ -45,14 +44,14 @@ elif args[1] == "-t":
   # TODO: Create and populate a temporary file using user raw text
   input_file_exsited = False
 
-# Sanitize text according to diacriticals
+# Parse the input and generate probabilit data
+prob_data.synthesize(input_filename)
 
-
-# Analyze quotation
-if args[1] == "-f":
-  quote_filename = args[2]
-# TODO: Generalize the parse and analysis functions to take any file as input
-verse_analysis = prob_analysis.simple_analysis()
+# Analyze the probability data against the Greek New Testament
+output_list = prob_analysis.simple_analysis()
 
 # Print analysis results
-print(verse_analysis)
+output = ""
+for char in output_list:
+  output+= char
+print(output)

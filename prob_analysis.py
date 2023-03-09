@@ -3,12 +3,12 @@ Kai Delsing
 03-07-2023
 
 ~ ~ PROBABILISTIC ANALYSIS ~ ~
-Analyze the data created by the probabalistic data synthesis (prob_data). Multiple
+Analyze the data created by the probabilistic data synthesis (prob_data). Multiple
 methods of analysis are used:
 1. simple_analysis
-    - find the verse with the maxmimum number of verse occurences
+    - find the verse with the maximum number of verse occurrences
 2. average_analysis
-    - find verses with more occurences than the average + standard deviation
+    - find verses with more occurrences than the average + standard deviation
 
 NOTE the python library numpy must be installed in order to run average_analysis 
 '''
@@ -45,25 +45,26 @@ def simple_analysis():
 # average + stdev
 # returns a list of results by clause (the outtext+=... line)
 def average_analysis():
+    outtext = []
     for clause in clause_data:
         linenum, versemap = clause[0], clause[1]
         versedata = list(versemap.items())
         versedata.sort(key=lambda x: x[1], reverse = True)
-        av = 0
-        for num in versedata[1]:
-            av += num
-        av = math.ceil(av/len(versedata))
-        above_av = []
-        sd = np.std(nums)
+        occurrences = [x[1] for x in versedata]
 
+        # calculate the average and standard deviation
+        av = np.average(occurrences)
+        sd = np.std(occurrences)
+        above = []
+        
         # if given verse's occurences is outside of the stdev of the average,
         # add to list
         for v in versedata:
-            if v[1] > (av + sd):
+            if v[1] > math.ceil(av + sd):
                 above += v
         
         # if there are no verses above av+stdev, grab the max and send to outtext
-        if len(outtext) == 0:
+        if len(above) == 0:
             verse, n = versedata[0]
             return f'Line {linenum} has no outstanding verse matches. The closest match is {verse}.'
         
