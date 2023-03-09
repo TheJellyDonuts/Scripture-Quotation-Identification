@@ -45,19 +45,18 @@ def simple_analysis():
 # average + stdev
 # returns a list of results by clause (the outtext+=... line)
 def average_analysis():
+    outtext = []
     for clause in clause_data:
         linenum, versemap = clause[0], clause[1]
         versedata = list(versemap.items())
         versedata.sort(key=lambda x: x[1], reverse = True)
-        av = 0
-        nums = []
-        for num in versedata[1]:
-            av += num
-            nums += num
-        av = math.ceil(av/len(versedata))
-        above_av = []
-        sd = np.std(nums)
+        occurrences = [x[1] for x in versedata]
 
+        # calculate the average and standard deviation
+        av = np.average(occurrences)
+        sd = np.std(occurrences)
+        above = []
+        
         # if given verse's occurences is outside of the stdev of the average,
         # add to list
         for v in versedata:
@@ -65,7 +64,7 @@ def average_analysis():
                 above += v
         
         # if there are no verses above av+stdev, grab the max and send to outtext
-        if len(outtext) == 0:
+        if len(above) == 0:
             verse, n = versedata[0]
             return f'Line {linenum} has no outstanding verse matches. The closest match is {verse}.'
         
