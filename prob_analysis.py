@@ -3,12 +3,12 @@ Kai Delsing
 03-07-2023
 
 ~ ~ PROBABILISTIC ANALYSIS ~ ~
-Analyze the data created by the probabalistic data synthesis (prob_data). Multiple
+Analyze the data created by the probabilistic data synthesis (prob_data). Multiple
 methods of analysis are used:
 1. simple_analysis
-    - find the verse with the maxmimum number of verse occurences
+    - find the verse with the maximum number of verse occurrences
 2. average_analysis
-    - find verses with more occurences than the average + standard deviation
+    - find verses with more occurrences than the average + standard deviation
 
 NOTE the python library numpy must be installed in order to run average_analysis 
 '''
