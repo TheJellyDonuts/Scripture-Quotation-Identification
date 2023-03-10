@@ -38,21 +38,25 @@ def simple_analysis(include_clause=False):
         versedata.sort(key=lambda x: x[1], reverse = True)
 
         # grab top item (most occurences)
+        #print('Versedata:', versedata[0])
+        if len(versedata) == 0:
+            continue
         verse, n = versedata[0]
 
         # export
         if include_clause:
-            outtext += clause.clause
-            outtext += f'\t{verse} has {n} word matches!'
+            outtext += [clause.clause]
+            outtext += [f'\n\t{verse} has {n} word matches!']
         else:
-            outtext += f'Line {linenum} is most likely {verse}, with {n} word matches!'
-        return outtext
+            outtext += [f'Line {linenum} is most likely {verse}, with {n} word matches!']
+        outtext += ['\n']
+    return outtext
     
 # performs an average analysis, which finds the average number and standard deviation
 # of occurences and only selects verses with an occurence greater than the 
 # average + stdev
 # returns a list of results by clause (the outtext+=... line)
-def average_analysis():
+def average_analysis(include_clause=False):
     outtext = []
     for clause in clause_res:
         linenum, versemap = clause.identifier, clause.verses
@@ -64,7 +68,11 @@ def average_analysis():
         av = np.average(occurrences)
         sd = np.std(occurrences)
         above = []
-        
+
+        # if no words in common with any verse
+        if len(versedata) == 0:
+            continue
+
         # if given verse's occurences is outside of the stdev of the average,
         # add to list
         for v in versedata:
@@ -72,12 +80,25 @@ def average_analysis():
                 above += v
         
         # if there are no verses above av+stdev, grab the max and send to outtext
-        if len(above) == 0:
-            verse, n = versedata[0]
-            return f'Line {linenum} has no outstanding verse matches. The closest match is {verse}.'
-        
-        for v in above:
-            verse, n = v[0]
-            outtext += f'Line {linenum} is most likely {verse}, with {n} word matches ({n-av} above average)!'
 
-        return outtext
+        if include_clause:
+            outtext += clause.clause
+            if len(above) == 0:
+                verse, n = versedata[0]
+                outtext += [f'\n\tNo outstanding verse matches found; closest match is {verse}.']
+            
+            for v in above:
+                verse, n = v[0]
+                outtext += [f'\n\t{verse} has {n} word matches ({n-av} above average)!']
+
+        else:
+            if len(above) == 0:
+                verse, n = versedata[0]
+                outtext += [f'Line {linenum} has no outstanding verse matches; closest match is {verse}.']
+            
+            for v in above:
+                verse, n = v[0]
+                outtext += [f'Line {linenum} is most likely {verse}, with {n} word matches ({n-av} above average)!']
+
+        outtext += 'n'
+    return outtext
