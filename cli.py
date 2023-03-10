@@ -84,15 +84,12 @@ def generate_output(input_filename: str, output_list: list):
         # TODO: Update this write loop to collect up to top three verses for each clause and display them
         versecount: int = 0
         for i in range(output_list.__len__()):
-            # Write the next clause
-            f.write(output_list[i])
             # Write the verse that best matches it
             f.write(output_list[i])
 
     # Close file and inform user
     print("Quotation analyzed.")
     print("Analysis written to " + output_filename + ".")
-    exit(0)
 
 # Run the interface through the command line
 def cli_process():
@@ -131,6 +128,7 @@ def cli_process():
             output += char
         print(output)
 
+        # Generate Text Files that contain output
         generate_output(input_filename[i], out_list)
 
         # Cleanup
