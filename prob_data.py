@@ -56,14 +56,6 @@ def synthesize(input_file):
     # open parsed New Testament data (containing gword objects) 
     words = open_object('data/word_list.pkl')
 
-    # place word data in list of objects
-    # words = []
-    # for word in data:
-    #     new_word_obj = gword.gword()
-    #     new_word_obj.import_json(word)
-    #     words.append(new_word_obj)
-
-
     cache = {}      # word: [verse, occurences],[verse, occurences],...]
     versemap = {}   # {verse: occurences, ...}
     not_found = {}  # {word: occurences, ...}

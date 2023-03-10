@@ -50,20 +50,3 @@ class gword:
     # check through variants to see if given variant exists
     def is_match(self, matched):
         return matched == self.word
-    
-    # import a JSON object and update this gword object
-    def import_json(self, import_dict):
-        try:
-            self.word = import_dict["word"]
-            self.verse_occurences = import_dict["verse_occurences"]
-        except:
-            print("Error encountered importing word object")
-
-    # export this gword object to a JSON object
-    def export_json(self):
-        export_dict = {
-            "word": self.word,
-            "verse_occurences": self.verse_occurences
-        }
-        json_obj = json.dumps(export_dict, indent=4)
-        return json_obj
