@@ -65,7 +65,7 @@ def change_verse_id(array):
         row[0] = new_verse_id
     return array
 
-filename = 'words.csv'
+filename = 'data/words.csv'
 # Removes BOM at the beginning of the file
 remove_bom(filename)
 
