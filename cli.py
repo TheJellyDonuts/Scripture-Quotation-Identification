@@ -24,7 +24,10 @@ Dev Notes:
 import sys
 import os.path
 import prob_data
-import prob_analysis
+# import prob_analysis
+from lazy_import import lazy_module
+# Import the module lazily
+prob_analysis = lazy_module('prob_analysis')
 
 # Create a temp file for greek input text
 def read_in_greek(original_greek: str):
