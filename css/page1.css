@@ -5,11 +5,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.flex-col {
-    display: flex;
-    flex-direction: column;
-}
-
 /* Basic styling for the header */
 header {
     background-color: #E9C17C;
@@ -20,32 +15,27 @@ header {
 /* Style the footer */
 footer {
     height: 50px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     background-color: darkgrey;
     color: #fff;
     padding: 1rem;
     text-align: center;
-}
-
-button {
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    position: relative;
+    /*Used to set the footer at the bottom of the page */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .main-content {
     min-height: calc(100vh - 50px);
     /* 50px is the height of the footer, adjust this value as needed */
     position: relative;
+}
+
+/* Class to set a div to a flex box column */
+.flex-col {
+    display: flex;
+    flex-direction: column;
 }
 
 #input-section {
@@ -82,7 +72,8 @@ h1 {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
+    z-index: 0;
+    padding: 10px;
     box-sizing: border-box;
     border-radius: 5px;
     font-size: 16px;
@@ -93,6 +84,14 @@ h1 {
     position: absolute;
     bottom: 5%;
     left: 5%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 #file-input {
