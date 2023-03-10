@@ -37,6 +37,12 @@ import source_parser
 import json
 import gword
 import gresult
+import pickle
+
+# use pickle to save objects directly to a file
+def save_object(obj, filename):
+    with open(filename, 'wb') as outp:  # Overwrites any existing file.
+        pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
 
 # perform the data synthesis
 def synthesize(input_file):
@@ -127,8 +133,10 @@ def synthesize(input_file):
         versemap.clear()
 
     # output
-    with open("data/prob_analysis_raw.json", "w") as f:
-        json.dump(output, f)
+    save_object(output, 'data/prob_analysis_raw.pkl')
+
+    #with open("data/prob_analysis_raw.txt", "w") as f:
+    #    f.writelines(output)
 
     with open("data/not_found_words.txt", 'w', errors='ignore') as f:
         f.writelines("Words not found:")
