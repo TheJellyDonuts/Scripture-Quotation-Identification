@@ -13,7 +13,7 @@ Given a scripture quotation from a church father's writings[^1], identify the mo
 
 ---
 
-## <ins>Instructions</ins>
+## <ins>Instructions for Use</ins>
 ### CLI:
 To analyze a string of raw Greek text:
 
