@@ -17,15 +17,23 @@ Given a scripture quotation from a church father's writings[^1], identify the mo
 To analyze a string of raw Greek text:
 > NOTE: the current working directory should be in the folder where `SQI.exe` is located
 
-`SQI.exe -t "<Greek_text>"`
+`SQI.exe -i "<Greek_text>"`
 
-To analyze a file containing Greek text:
+To analyze a single file containing Greek text:
 
 `SQI.exe -f <Greek_filepath>`
 
 To analyze multiple files containing Greek text:
 
-`SQI.exe -b <Greek_filepath_1> <Greek_filepath_2> ...`
+`SQI.exe -f <Greek_filepath_1> <Greek_filepath_2> ...`
+
+To output data to a file:
+
+`SQI.exe -f <Greek_filepath> -o`
+
+To specify the number of standard deviations:
+
+`SQI.exe -f <Greek_filepath> -sd <number_of_standard_dev>`
 
 ### GUI:
 1. Run the GUI: `python <gui_filepath>/gui.py` (ensure that the [prerequisites](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification#prerequisites) are fulfilled before running!)
