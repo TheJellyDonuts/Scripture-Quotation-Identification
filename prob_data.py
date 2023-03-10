@@ -36,6 +36,7 @@ At the completion of each clause, the versemap results are pushed to an output l
 import source_parser
 import json
 import gword
+import gresult
 
 # perform the data synthesis
 def synthesize(input_file):
@@ -118,14 +119,14 @@ def synthesize(input_file):
         # TODO: deal with punctuation?
 
         # add data to output and clear cache
-        # output += [clause["line_number"], versemap]
-        output.append([clause["line_number"], versemap.copy()])
+        res = gresult().set_id(clause["line_number"])
+        res = res.set_verses(versemap.copy())
+        output.append(res)
+
         cache.clear()
         versemap.clear()
 
-
     # output
-
     with open("data/prob_analysis_raw.json", "w") as f:
         json.dump(output, f)
 
