@@ -16,19 +16,19 @@ NOTE the python library numpy must be installed in order to run average_analysis
 
 import math
 import numpy as np
-import json
+#import json
 
 
-with open("data/prob_analysis_raw.json", "r") as f:
-    clause_data = json.load(f)
+with open("data/prob_analysis_raw.txt", "r") as f:
+    clause_res = f.readlines()
 
 # performs a simple analysis, which finds the verse with the maximum number of
 # matches for a given clause
 # returns a list of results by clause (the outtext+=... line)
 def simple_analysis():
     outtext = []
-    for clause in clause_data:
-        linenum, versemap = clause[0], clause[1]
+    for clause in clause_res:
+        linenum, versemap = clause.identifier, clause.verses
         versedata = list(versemap.items())
         # sort items by occurence
         versedata.sort(key=lambda x: x[1], reverse = True)
@@ -46,8 +46,8 @@ def simple_analysis():
 # returns a list of results by clause (the outtext+=... line)
 def average_analysis():
     outtext = []
-    for clause in clause_data:
-        linenum, versemap = clause[0], clause[1]
+    for clause in clause_res:
+        linenum, versemap = clause.identifier, clause.verses
         versedata = list(versemap.items())
         versedata.sort(key=lambda x: x[1], reverse = True)
         occurrences = [x[1] for x in versedata]

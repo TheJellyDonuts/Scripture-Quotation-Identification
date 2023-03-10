@@ -127,8 +127,8 @@ def synthesize(input_file):
         versemap.clear()
 
     # output
-    with open("data/prob_analysis_raw.json", "w") as f:
-        json.dump(output, f)
+    with open("data/prob_analysis_raw.txt", "w") as f:
+        f.writelines(output)
 
     with open("data/not_found_words.txt", 'w', errors='ignore') as f:
         f.writelines("Words not found:")
