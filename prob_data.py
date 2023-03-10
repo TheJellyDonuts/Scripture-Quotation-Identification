@@ -36,10 +36,10 @@ At the completion of each clause, the versemap results are pushed to an output l
 import source_parser
 import json
 import gword
+import gresult
 
 # perform the data synthesis
 def synthesize(input_file):
-    clauses, words = [], []
     clauses = source_parser.parse_greek(input_file)
 
     # open data 
@@ -55,7 +55,6 @@ def synthesize(input_file):
 
 
     cache = {}      # word: [verse, occurences],[verse, occurences],...]
-
     versemap = {}   # {verse: occurences, ...}
     not_found = {}  # {word: occurences, ...}
     output = []     # {line#, [[verse, occurences],[verse, occurences],...], ...}
@@ -91,7 +90,7 @@ def synthesize(input_file):
 
     # go through a clause for each word
     for clause in clauses:
-        for word in clause["words"]:
+        for word in clause.words:
             found = False
 
             # search cache for the word; if found, increment respective
@@ -108,7 +107,7 @@ def synthesize(input_file):
             # if word not found in cache or wordlist, add to not_found
             # list. Keep track of occurences
             if not found:
-                if word == '’' or word == '':
+                if word == '’' or word == '' or word == ' ' or word == None:
                     continue
                 if word not in not_found:
                     not_found.update({word: 1})
@@ -118,14 +117,16 @@ def synthesize(input_file):
         # TODO: deal with punctuation?
 
         # add data to output and clear cache
-        # output += [clause["line_number"], versemap]
-        output.append([clause["line_number"], versemap.copy()])
+        res = gresult.gresult()
+        res.set_clause(clause.clause)
+        res.set_id(clause.identifier)
+        res.set_verses(versemap.copy())
+        output.append(res)
+
         cache.clear()
         versemap.clear()
 
-
     # output
-
     with open("data/prob_analysis_raw.json", "w") as f:
         json.dump(output, f)
 
