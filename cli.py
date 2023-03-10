@@ -93,57 +93,66 @@ def generate_output(input_filename: str, output_list: list):
     print("Analysis written to " + output_filename + ".")
 
 # Run the interface through the command line
+
+
 def cli_process():
     # Adds Arguments to the command line
-    parser = argparse.ArgumentParser(description='Find Possible New Testament Quotations in Greek Manuscripts')
-    parser.add_argument('-o', '--output', action='store_true', help='Redirects output to a file')
-    parser.add_argument('-f', '--file', type=str, nargs='+', help='Specifies input file path' )
-    parser.add_argument('-i', '--input', type=str, nargs=1, help='Enter text directly following this tag')
-    parser.add_argument('-sd', type=int, nargs=1, help='Specify integer for number of standard deviations to include')
-    
+    parser = argparse.ArgumentParser(
+        description='Find Possible New Testament Quotations in Greek Manuscripts')
+    parser.add_argument('-o', '--output', action='store_true',
+                        help='Redirects output to a file')
+    parser.add_argument('-f', '--file', type=str, nargs='+',
+                        help='Specifies input file path')
+    parser.add_argument('-i', '--input', type=str, nargs=1,
+                        help='Enter text directly following this tag')
+    parser.add_argument('-sd', type=int, nargs=1,
+                        help='Specify integer for number of standard deviations to include')
+
     # Get arguments
     args = parser.parse_args()
 
     # Sanitize input and grab filename(s)
     input_filename = []
-    
+
     # If -f or --file is set, analyze files
     if (args.file):
-      for i in range(0, len(args.file)):
-        sanitize_input(args.file[i], True)
-        input_filename.append(args.file[i])
+        for i in range(0, len(args.file)):
+            sanitize_input(args.file[i], True)
+            input_filename.append(args.file[i])
     # If text is set, analyze files
     elif (args.input):
         sanitize_input(args.input[0], False)
         input_filename.append(read_in_greek(args.input[0]))
     else:
-       raise Exception("Input must be specified")    
+        raise Exception("Input must be specified")
 
     # Kowalski, analysis
     for i in range(input_filename.__len__()):
         print(input_filename[i])
 
         # Checks if Standard Deviation Flag is used
-        if(args.sd):
-          out_list = analyze_data(input_filename[i], args.sd[0])
+        if (args.sd):
+            out_list = analyze_data(input_filename[i], args.sd[0])
         else:
-          out_list = analyze_data(input_filename[i])
+            out_list = analyze_data(input_filename[i])
 
         # Generate Text Files that contain output
         if (args.output):
-          generate_output(input_filename[i], out_list)
+            generate_output(input_filename[i], out_list)
         else:
-          # Print analysis results
-          output = ""
-          for char in out_list:
-            output += char
-          print(output)
+            # Print analysis results
+            output = ""
+            for char in out_list:
+                output += char
+            print(output)
 
         # Cleanup
         if os.path.isfile("original_greek.txt"):
             os.remove("original_greek.txt")
 
 # Run the interface through the web app
+
+
 def web_process(input: str):
     sanitize_input(input)
     f = read_in_greek(input)
