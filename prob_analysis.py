@@ -19,9 +19,10 @@ import numpy as np
 import pickle
 #import json
 
-
-with open("data/prob_analysis_raw.pkl", "rb") as inp:
-    clause_res = pickle.load(inp)
+# Function opens prob_analysis_raw.pkl and returns the load
+def load_prob_raw():
+    with open("data/prob_analysis_raw.pkl", "rb") as inp:
+        return pickle.load(inp)
 
 #with open("data/prob_analysis_raw.pkl", "r") as f:
 #    clause_res = f.readlines()
@@ -30,15 +31,16 @@ with open("data/prob_analysis_raw.pkl", "rb") as inp:
 # matches for a given clause
 # returns a list of results by clause (the outtext+=... line)
 def simple_analysis(include_clause=False):
+    clause_res = load_prob_raw()
+    with open("data/prob_analysis_raw.pkl", "rb") as inp:
+        clause_res = pickle.load(inp)
     outtext = []
     for clause in clause_res:
         linenum, versemap = clause.identifier, clause.verses
         versedata = list(versemap.items())
         # sort items by occurence
         versedata.sort(key=lambda x: x[1], reverse = True)
-
         # grab top item (most occurences)
-        #print('Versedata:', versedata[0])
         if len(versedata) == 0:
             continue
         verse, n = versedata[0]
@@ -58,6 +60,7 @@ def simple_analysis(include_clause=False):
 # returns a list of results by clause (the outtext+=... line)
 def average_analysis(include_clause=False):
     outtext = []
+    clause_res = load_prob_raw()
     for clause in clause_res:
         linenum, versemap = clause.identifier, clause.verses
         versedata = list(versemap.items())
