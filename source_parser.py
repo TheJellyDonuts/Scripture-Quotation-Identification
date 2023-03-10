@@ -40,12 +40,12 @@ def parse_greek(input_file):
         delimiters = []
         for delim in re.finditer("·|\.|\;", txt):
             delimiters.append(txt[delim.start()])
-        lineClauses = re.split("·|\.|\;", txt)
+        line_clauses = re.split("·|\.|\;", txt)
 
-        for i in range(len(lineClauses) - 1):
+        for i in range(len(line_clauses) - 1):
             
             # find words
-            words = lineClauses[i].split(" ")
+            words = line_clauses[i].split(" ")
 
             # sanitize words
             words = remove_values_from_list(words, "ο")
@@ -72,6 +72,7 @@ def parse_greek(input_file):
             res.set_words(words)                # list of the Greek words
             res.set_delimiter(delimiters[i])    # punctuation at end of sentence
             res.set_clause(line_num + " " + " ".join(words) + delimiters[i])     # full clause
+            clauses.append(res)
 
     # return clause list
     return clauses
