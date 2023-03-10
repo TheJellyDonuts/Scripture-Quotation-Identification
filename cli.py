@@ -39,11 +39,9 @@ def sanitize_input(input: str, is_file: bool):
   if is_file:
     # Check that file exists and is not harmful
     if not os.path.isfile(input):
-      print("ERROR: File does not exist")
-      exit(11)
+      raise Exception("File does not exist")
     elif extension != ".txt":
-      print("ERROR: Only .txt files are acceptable.")
-      exit(12)
+      raise Exception("Only .txt files are acceptable.")
     else:
       # TODO: Handle malicious file catching
       return
@@ -66,7 +64,7 @@ def generate_output(input_filename: str, output_list: list):
   if input_filename == "original_greek.txt":
     output_filename = "quotation_analysis.txt"
   else:
-    output_filename = input_filename[0, -4] + "_analysis.txt"
+    output_filename = os.path.splitext(input_filename)[0] + "_analysis.txt"
   output_file = open(output_filename, "w")
   
   # Write analysis results to output file
@@ -99,9 +97,7 @@ def cli_process():
 
   # Verify CLI usage
   if args.__len__() != 3:
-    print("Usage: python cli.py -f <filepath>")
-    print("OR python cli.py -t \"<quotation text>\"")
-    exit(21)
+    raise Exception("\nUsage: python cli.py -f <filepath>\nOR python cli.py -t \"<quotation text>\"")
   
   # Sanitize input and grab filename
   input_filename: str = ""
