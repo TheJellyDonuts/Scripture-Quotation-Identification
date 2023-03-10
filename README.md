@@ -14,8 +14,6 @@ Given a scripture quotation from a church father's writings[^1], identify the mo
 ---
 
 ## <ins>Instructions</ins>
-
-# KOBE ADD CLI INSTRUCTIONS
 ### CLI:
 To analyze a string of raw Greek text:
 
