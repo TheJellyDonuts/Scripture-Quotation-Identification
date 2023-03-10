@@ -35,12 +35,18 @@ def read_in_greek(original_greek: str):
 
 # Sanitize input file/text BEFORE ANYTHING ELSE
 def sanitize_input(input: str, is_file: bool):
+  extension: str = os.path.splitext(input)[1]
   if is_file:
     # Check that file exists and is not harmful
     if not os.path.isfile(input):
       print("ERROR: File does not exist")
       exit(11)
-    # TODO: Handle malicious file catching
+    elif extension != ".txt":
+      print("ERROR: Only .txt files are acceptable.")
+      exit(12)
+    else:
+      # TODO: Handle malicious file catching
+      return
   else:
     # TODO: Handle malicious text catching
     return
@@ -116,7 +122,8 @@ def cli_process():
   print(output)
 
   # Cleanup
-  os.remove("original_greek.txt")
+  if os.path.isfile("original_greek.txt"):
+    os.remove("original_greek.txt")
 
 # Actually execute the cli process for cli users
 cli_process()
