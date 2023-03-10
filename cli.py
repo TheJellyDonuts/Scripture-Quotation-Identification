@@ -52,7 +52,31 @@ def analyze_data(filename: str):
   # Analyze the probability data against the Greek New Testament
   output_list = prob_analysis.simple_analysis()
   return output_list
+
+# Dump the analysis output into a text file
+def generate_output(input_filename: str, output_list: list):
+  # Create output file
+  output_filename: str = ""
+  if input_filename == "original_greek.txt":
+    output_filename = "quotation_analysis.txt"
+  else:
+    output_filename = input_filename[0, -4] + "_analysis.txt"
+  output_file = open(output_filename, "w")
   
+  # Write analysis results to output file
+  # TODO: Update this write loop to collect up to top three verses for each clause and display them
+  versecount: int = 0
+  for i in range(clause_list.__len__()):
+    # Write the next clause
+    output_file.write(clause_list[i] + "\n")
+    # Write the verse that best matches it
+    output_file.write(output_list[i] + "\n\n")
+
+  # Close file and inform user
+  print("Quotation analyzed.")
+  print("Analysis written to " + output_filename + ".")
+  exit(0)
+    
 # Run the interface through the web app
 def web_process(input: str):
   sanitize_input(input)
