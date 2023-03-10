@@ -1,0 +1,127 @@
+/* Reset styles for better cross-browser compatibility */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Basic styling for the header */
+header {
+    background-color: #E9C17C;
+    color: black;
+    padding: 1rem;
+}
+
+/* Style the footer */
+footer {
+    height: 50px;
+    background-color: darkgrey;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    /*Used to set the footer at the bottom of the page */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.main-content {
+    min-height: calc(100vh - 50px);
+    /* 50px is the height of the footer, adjust this value as needed */
+    position: relative;
+}
+
+/* Class to set a div to a flex box column */
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+#input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    align-self: center;
+    margin: 10px;
+}
+
+.container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+#text-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
+
+#upload-button {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#file-input {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+/* Hide the default file input */
+input[type=file] {
+    display: none;
+}
+
+/* Style the label to look like a button */
+label[for=file-input] {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+/* Style the label on hover */
+label[for=file-input]:hover {
+    background-color: #0f7bee;
+}

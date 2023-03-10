@@ -1,0 +1,83 @@
+/* Reset styles for better cross-browser compatibility */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Basic styling for the header */
+header {
+  background-color: #E9C17C;
+  color: black;
+  padding: 1rem;
+}
+
+img {
+  height: 28px;
+}
+
+/* Style the footer */
+footer {
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: darkgrey;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+textarea {
+  width: calc(100%-20px);
+  height: 300px;
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.main-content {
+  min-height: calc(100vh - 50px);
+  /* 50px is the height of the footer, adjust this value as needed */
+  position: relative;
+}
+
+#input-section {
+  width: calc(50% - 20px);
+  margin: 10px;
+}
+
+#output-section {
+  width: calc(50% - 20px);
+  margin: 10px;
+}
+
+h1 {
+  align-self: center;
+}

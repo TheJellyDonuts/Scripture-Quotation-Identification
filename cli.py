@@ -35,12 +35,16 @@ def read_in_greek(original_greek: str):
 
 # Sanitize input file/text BEFORE ANYTHING ELSE
 def sanitize_input(input: str, is_file: bool):
+  extension: str = os.path.splitext(input)[1]
   if is_file:
     # Check that file exists and is not harmful
     if not os.path.isfile(input):
-      print("ERROR: File does not exist")
-      exit(11)
-    # TODO: Handle malicious file catching
+      raise Exception("File does not exist")
+    elif extension != ".txt":
+      raise Exception("Only .txt files are acceptable.")
+    else:
+      # TODO: Handle malicious file catching
+      return
   else:
     # TODO: Handle malicious text catching
     return
@@ -52,7 +56,31 @@ def analyze_data(filename: str):
   # Analyze the probability data against the Greek New Testament
   output_list = prob_analysis.simple_analysis()
   return output_list
+
+# Dump the analysis output into a text file
+def generate_output(input_filename: str, output_list: list):
+  # Create output file
+  output_filename: str = ""
+  if input_filename == "original_greek.txt":
+    output_filename = "quotation_analysis.txt"
+  else:
+    output_filename = os.path.splitext(input_filename)[0] + "_analysis.txt"
+  output_file = open(output_filename, "w")
   
+  # Write analysis results to output file
+  # TODO: Update this write loop to collect up to top three verses for each clause and display them
+  versecount: int = 0
+  for i in range(clause_list.__len__()):
+    # Write the next clause
+    output_file.write(clause_list[i] + "\n")
+    # Write the verse that best matches it
+    output_file.write(output_list[i] + "\n\n")
+
+  # Close file and inform user
+  print("Quotation analyzed.")
+  print("Analysis written to " + output_filename + ".")
+  exit(0)
+    
 # Run the interface through the web app
 def web_process(input: str):
   sanitize_input(input)
@@ -69,9 +97,8 @@ def cli_process():
 
   # Verify CLI usage
   if args.__len__() != 3:
-    print("Usage: python cli.py -f <filepath>")
-    print("OR python cli.py -t \"<quotation text>\"")
-    exit(21)
+    print("Usage: python cli.py -f <filepath>\nOR python cli.py -t \"<quotation text>\"")
+    exit(1)
   
   # Sanitize input and grab filename
   input_filename: str = ""
@@ -92,7 +119,8 @@ def cli_process():
   print(output)
 
   # Cleanup
-  os.remove("original_greek.txt")
+  if os.path.isfile("original_greek.txt"):
+    os.remove("original_greek.txt")
 
 # Actually execute the cli process for cli users
 cli_process()
