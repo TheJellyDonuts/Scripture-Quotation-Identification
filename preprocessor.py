@@ -10,6 +10,7 @@ into a list of gword objects and writes that to wordList.json.
 
 import csv
 import gword
+import pickle
 
 books = {
     40: 'Matthew',
@@ -41,6 +42,11 @@ books = {
     66: 'Revelation'
 }
 
+# use pickle to save objects directly to a file
+def save_object(obj, filename):
+    with open(filename, 'wb') as outp:  # Overwrites any existing file.
+        pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
+
 # Removes binary object model indicator at the beginning of words.csv.
 def remove_bom(filename):
     # Read the file as bytes
@@ -65,12 +71,12 @@ def change_verse_id(array):
         row[0] = new_verse_id
     return array
 
-filename = 'words.csv'
+filename = 'data/words.csv'
 # Removes BOM at the beginning of the file
 remove_bom(filename)
 
 # Converts CSV File into a 2D Array
-with open(filename, newline='') as csvfile:
+with open(filename, newline='', encoding='utf-8') as csvfile:
     reader = csv.reader(csvfile)
     headers = next(reader)
     data_array = [row for row in reader]
@@ -97,10 +103,12 @@ for value in data_array:
         new_word.add_verse(verse_ref)
         greek_words.append(new_word)
 
-# Print Greek Word Array as a JSON File
-with open('data/word_list.json', 'w') as f:
-    f.writelines("[")
-    lst = [word.export_json()+",\n" for word in greek_words]
-    lst[-1] = lst[-1][:-2]+"\n"
-    f.writelines(lst)
-    f.writelines("]")
+# Print Greek Word list as a pickle File
+save_object(greek_words, 'data/word_list.pkl')
+
+# with open('data/word_list.json', 'w') as f:
+#     f.writelines("[")
+#     lst = [word.export_json()+",\n" for word in greek_words]
+#     lst[-1] = lst[-1][:-2]+"\n"
+#     f.writelines(lst)
+#     f.writelines("]")
