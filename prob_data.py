@@ -48,7 +48,7 @@ def save_object(obj, filename):
 def synthesize(input_file):
     clauses = source_parser.parse_greek(input_file)
 
-    # open data 
+    # open parsed New Testament data (containing gword objects) 
     with open('data/word_list.json', 'r') as f:
         data = json.load(f)
 

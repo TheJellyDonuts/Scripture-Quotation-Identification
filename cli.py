@@ -98,8 +98,8 @@ def generate_output(input_filename: str, output_list: list):
 
 # Run the interface through the command line
 def cli_process():
-    # Get arguments
-    args = sys.argv
+  # Get arguments
+  args = sys.argv
 
   # Verify CLI usage
   l = args.__len__()
@@ -123,16 +123,24 @@ def cli_process():
       input_filename.append(args[i])
 
   # Kowalski, analysis
-  # for i in range(input_filename.__len__()):
-  #   print(input_filename[i])
-  #   out_list = analyze_data(input_filename[i])
-    print(input_filename[1])
-    out_list = analyze_data(input_filename[1])
+  for i in range(input_filename.__len__()):
+    print(input_filename[i])
+    out_list = analyze_data(input_filename[i])
+    # print(out_list)
+    # # Print analysis results
+    # output = ""
+    # for char in out_list:
+    #   output+= char
+    # print(output)
+
+    # print(input_filename[1])
+    # out_list = analyze_data(input_filename[1])
+
     # Print analysis results
-    output = ""
-    for char in out_list:
-      output+= char
-    print(output)
+    # output = ""
+    # for char in out_list:
+    #   output+= char
+    # print(output)
 
     # Cleanup
     if os.path.isfile("original_greek.txt"):
