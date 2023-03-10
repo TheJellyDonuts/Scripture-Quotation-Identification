@@ -97,7 +97,8 @@ def cli_process():
 
   # Verify CLI usage
   if args.__len__() != 3:
-    raise Exception("\nUsage: python cli.py -f <filepath>\nOR python cli.py -t \"<quotation text>\"")
+    print("Usage: python cli.py -f <filepath>\nOR python cli.py -t \"<quotation text>\"")
+    exit(1)
   
   # Sanitize input and grab filename
   input_filename: str = ""
