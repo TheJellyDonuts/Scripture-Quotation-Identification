@@ -27,14 +27,9 @@ Dev Notes:
 import sys
 import os.path
 import prob_data
-# import prob_analysis
-from lazy_import import lazy_module
-# Import the module lazily
-prob_analysis = lazy_module('prob_analysis')
+import prob_analysis
 
 # Create a temp file for greek input text
-
-
 def read_in_greek(original_greek: str):
     temp_file = open("original_greek.txt", "w")
     temp_file.write(original_greek)
@@ -42,8 +37,6 @@ def read_in_greek(original_greek: str):
     return temp_file.name()
 
 # Sanitize input file/text BEFORE ANYTHING ELSE
-
-
 def sanitize_input(input: str, is_file: bool):
     extension: str = os.path.splitext(input)[1]
     if is_file:
@@ -60,35 +53,34 @@ def sanitize_input(input: str, is_file: bool):
         return
 
 # Do the probability analysis
-
-
 def analyze_data(filename: str):
     # Parse the input and generate probabilit data
     prob_data.synthesize(filename)
     # Analyze the probability data against the Greek New Testament
-    output_list = prob_analysis.simple_analysis(True)
+    output_list = prob_analysis.average_analysis(True)
     return output_list
 
 # Dump the analysis output into a text file
-
-
 def generate_output(input_filename: str, output_list: list):
-    # Create output file
+    input_filename = os.path.basename(input_filename)
+    #  Create output file
     output_filename: str = ""
     if input_filename == "original_greek.txt":
         output_filename = "quotation_analysis.txt"
     else:
         output_filename = os.path.splitext(input_filename)[0] + "_analysis.txt"
-    #output_file = open(output_filename, "w")
+    output_rel_path = "./output/"
+    output_file_path = os.path.join(output_rel_path, output_filename)
+    output_file = open(output_file_path, "w")
 
     # Write analysis results to output file
     # TODO: Update this write loop to collect up to top three verses for each clause and display them
-    #versecount: int = 0
-    # for i in range(clause_list.__len__()):
-    #  # Write the next clause
-    #  output_file.write(clause_list[i] + "\n")
-    #  # Write the verse that best matches it
-    #  output_file.write(output_list[i] + "\n\n")
+    versecount: int = 0
+    for i in range(output_list.__len__()):
+      # Write the next clause
+      output_file.write(output_list[i])
+      # Write the verse that best matches it
+      output_file.write(output_list[i])
 
     # Close file and inform user
     print("Quotation analyzed.")
@@ -133,13 +125,13 @@ def cli_process():
       output+= char
     print(output)
 
+    generate_output(input_filename[i], out_list)
+
     # Cleanup
     if os.path.isfile("original_greek.txt"):
         os.remove("original_greek.txt")
 
 # Run the interface through the web app
-
-
 def web_process(input: str):
     sanitize_input(input)
     f = read_in_greek(input)
