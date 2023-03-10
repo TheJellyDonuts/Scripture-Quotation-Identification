@@ -57,7 +57,7 @@ def analyze_data(filename: str):
   # Parse the input and generate probabilit data
   prob_data.synthesize(filename)
   # Analyze the probability data against the Greek New Testament
-  output_list = prob_analysis.simple_analysis()
+  output_list = prob_analysis.simple_analysis(True)
   return output_list
 
 # Dump the analysis output into a text file
