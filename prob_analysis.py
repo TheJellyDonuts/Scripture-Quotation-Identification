@@ -29,7 +29,7 @@ with open("data/prob_analysis_raw.pkl", "rb") as inp:
 # performs a simple analysis, which finds the verse with the maximum number of
 # matches for a given clause
 # returns a list of results by clause (the outtext+=... line)
-def simple_analysis():
+def simple_analysis(include_clause=False):
     outtext = []
     for clause in clause_res:
         linenum, versemap = clause.identifier, clause.verses
@@ -41,7 +41,11 @@ def simple_analysis():
         verse, n = versedata[0]
 
         # export
-        outtext += f'Line {linenum} is most likely {verse}, with {n} matches!'
+        if include_clause:
+            outtext += clause.clause
+            outtext += f'\t{verse} has {n} word matches!'
+        else:
+            outtext += f'Line {linenum} is most likely {verse}, with {n} word matches!'
         return outtext
     
 # performs an average analysis, which finds the average number and standard deviation
@@ -74,6 +78,6 @@ def average_analysis():
         
         for v in above:
             verse, n = v[0]
-            outtext += f'Line {linenum} is most likely {verse}, with {n} matches ({n-av} above average)!'
+            outtext += f'Line {linenum} is most likely {verse}, with {n} word matches ({n-av} above average)!'
 
         return outtext

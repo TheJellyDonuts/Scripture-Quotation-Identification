@@ -57,7 +57,7 @@ def analyze_data(filename: str):
   # Parse the input and generate probabilit data
   prob_data.synthesize(filename)
   # Analyze the probability data against the Greek New Testament
-  output_list = prob_analysis.simple_analysis()
+  output_list = prob_analysis.simple_analysis(True)
   return output_list
 
 # Dump the analysis output into a text file
@@ -72,12 +72,12 @@ def generate_output(input_filename: str, output_list: list):
   
   # Write analysis results to output file
   # TODO: Update this write loop to collect up to top three verses for each clause and display them
-  versecount: int = 0
-  for i in range(clause_list.__len__()):
-    # Write the next clause
-    output_file.write(clause_list[i] + "\n")
-    # Write the verse that best matches it
-    output_file.write(output_list[i] + "\n\n")
+  #versecount: int = 0
+  #for i in range(clause_list.__len__()):
+  #  # Write the next clause
+  #  output_file.write(clause_list[i] + "\n")
+  #  # Write the verse that best matches it
+  #  output_file.write(output_list[i] + "\n\n")
 
   # Close file and inform user
   print("Quotation analyzed.")
