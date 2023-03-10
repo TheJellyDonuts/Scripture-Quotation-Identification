@@ -16,11 +16,15 @@ NOTE the python library numpy must be installed in order to run average_analysis
 
 import math
 import numpy as np
+import pickle
 #import json
 
 
-with open("data/prob_analysis_raw.txt", "r") as f:
-    clause_res = f.readlines()
+with open("data/prob_analysis_raw.pkl", "rb") as inp:
+    clause_res = pickle.load(inp)
+
+#with open("data/prob_analysis_raw.pkl", "r") as f:
+#    clause_res = f.readlines()
 
 # performs a simple analysis, which finds the verse with the maximum number of
 # matches for a given clause
