@@ -2,8 +2,6 @@
 
 Given a scripture quotation from a church father's writings[^1], identify the most likely verses being quoted by that quotation, ideally with a level of confidence according to the algorithms we implemented.
 
-<add stuff about using the various interfaces>
-
 ---
 
 ## <ins>Prerequisites</ins>
