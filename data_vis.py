@@ -12,7 +12,6 @@ gen_stacked_bar provides more comprehensive analysis on which verses are most re
 # plotting imports
 import numpy as np
 import matplotlib.pyplot as plt
-import json
 import pickle
 
 # open file to use
@@ -67,7 +66,7 @@ def gen_stacked_bar(num_bars = 50, match_threshold = 5, bible_ordered = True):
     # format data from file
     occur_dict = {}
     for clause in clause_data:
-        line_num, versemap = clause.identifier, clause.verses
+        versemap = clause.verses
         verse_data = list(versemap.items())
         verse_data.sort(key=lambda x: x[1], reverse = True)
         
@@ -204,6 +203,6 @@ def format_verse(vrs_str):
     return book, chap_num, verse_num
 
 # print(nt_dict[format_verse("Matthew028019")[0]][1])
-gen_stacked_bar(20, 8, True)
-gen_bars(3, 10, 8)
+gen_stacked_bar(20, 5, True)
+gen_bars(50, 10, 7)
 
