@@ -17,8 +17,8 @@ class gresult():
         self.identifier = None
         self.verses = {}
 
-    def set_id(self, clause):
-        self.clause = clause
+    def set_id(self, id):
+        self.identifier = id
 
     def add_verse(self, verse, occurrences):
         self.verses.update({verse: occurrences})
