@@ -131,9 +131,6 @@ def synthesize(input_file):
     # output
     save_object(output, 'data/prob_analysis_raw.pkl')
 
-    #with open("data/prob_analysis_raw.txt", "w") as f:
-    #    f.writelines(output)
-
     with open("data/not_found_words.txt", 'w', encoding='utf-8') as f:
         f.writelines("Words not found:")
         f.writelines(not_found)
