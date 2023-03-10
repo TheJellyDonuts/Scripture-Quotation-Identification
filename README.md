@@ -35,4 +35,10 @@ To analyze multiple files containing Greek text:
 ### WUI:
 *Work in progress. Needs further server development.*
 
+---
+
+## <ins>[Wiki](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification/wiki)</is>
+Visit the [Wiki](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification/wiki) to learn more about how our program parses and analyzes all of the information! Documentation is available for all of the major classes.
+
+
 [^1]: Link to apostolic-fathers repo: https://github.com/jtauber/apostolic-fathers
