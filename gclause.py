@@ -3,11 +3,11 @@ Kai Delsing
 03-09-2023
 
 ~ ~ GREEK CLAUSE (gclause) OBJECT CLASS ~ ~
-Creates a class gclause (greek clause) that has 3 attributes:
-- clause: the sentence/clause which this object is centered around
-- identifier: the prefix identifier that makes this line
-               distinct (i.e. 1.1)
-- words: a list of Greek word strings (not gwords)
+Creates a class gclause (greek clause) that has 4 attributes:
+1. clause: The actual string clause itself, with prefix and trailing punctuation
+2. identifier: the prefix or line number that precedes the clause itself
+3. words: a list of Greek word (not gword) strings that the clause contains
+4. delimiter: the postfix punctuation of the clause
 
 The verse format is BookCCCVVV. Ex: Matthew010002 (Matthew 10:2)
 '''

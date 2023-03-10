@@ -118,7 +118,8 @@ def synthesize(input_file):
 
         # add data to output and clear cache
         res = gresult.gresult()
-        res.set_id(clause["line_number"])
+        res.set_clause(clause.clause)
+        res.set_id(clause.identifier)
         res.set_verses(versemap.copy())
         output.append(res)
 
