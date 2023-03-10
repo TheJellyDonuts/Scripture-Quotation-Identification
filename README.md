@@ -40,5 +40,12 @@ To analyze multiple files containing Greek text:
 ## <ins>[Wiki](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification/wiki)</is>
 Visit the [Wiki](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification/wiki) to learn more about how our program parses and analyzes all of the information! Documentation is available for all of the major classes.
 
+### Future Goals
+- [ ] Migrate to tempfile Python Library Where Necessary
+- [ ] Organize Source Code into src/ Directory
+- [ ] Implement CLI & GUI & WUI Loading Bar
+- [ ] Build Pen Test Cases
+- [ ] Create Task List for Word Order Algorithm
+
 
 [^1]: Link to apostolic-fathers repo: https://github.com/jtauber/apostolic-fathers
