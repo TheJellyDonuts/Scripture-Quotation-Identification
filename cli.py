@@ -103,7 +103,7 @@ def cli_process():
 
   # Verify CLI usage
   l = args.__len__()
-  if l < 4 or (args[1] == "-f" and l != 3) or (args[1] == "-t" and l != 3):
+  if l < 3 or (args[1] == "-f" and l != 3) or (args[1] == "-t" and l != 3):
     print("Usage: python cli.py -f <filepath>")
     print("OR     python cli.py -t \"<quotation text>\"")
     print("OR     python cli.py -b <filepath> <filepath> ...")
@@ -113,21 +113,21 @@ def cli_process():
   input_filename = []
   if args[1] == "-f":
     sanitize_input(args[2], True)
-    input_filename = args[2]
+    input_filename.append(args[2])
   elif args[1] == "-t":
     sanitize_input(args[2], False)
-    input_filename = read_in_greek(args[2])
+    input_filename.append(read_in_greek(args[2]))
   elif args[1] == "-b":
-    input_filename = []
-    for i in range(2, args.__len__() - 1):
+    for i in range(2, args.__len__()):
       sanitize_input(args[i], True)
       input_filename.append(args[i])
 
   # Kowalski, analysis
-  for i in range(input_filename.__len__()):
-    print(input_filename)
-    out_list = analyze_data(input_filename[i])
-
+  # for i in range(input_filename.__len__()):
+  #   print(input_filename[i])
+  #   out_list = analyze_data(input_filename[i])
+    print(input_filename[1])
+    out_list = analyze_data(input_filename[1])
     # Print analysis results
     output = ""
     for char in out_list:
