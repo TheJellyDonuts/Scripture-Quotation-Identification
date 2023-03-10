@@ -16,7 +16,7 @@ The verse format is BookCCCVVV. Ex: Matthew010002 (Matthew 10:2)
 
 class gresult():
     def __init__(self):
-        self.clause
+        self.clause = ""
         self.identifier = None
         self.verses = {}
 
