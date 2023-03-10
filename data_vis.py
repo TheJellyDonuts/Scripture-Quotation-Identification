@@ -13,10 +13,11 @@ gen_stacked_bar provides more comprehensive analysis on which verses are most re
 import numpy as np
 import matplotlib.pyplot as plt
 import json
+import pickle
 
 # open file to use
-with open("data/prob_analysis_raw.json", "r") as f:
-    clause_data = json.load(f)
+with open("data/prob_analysis_raw.pkl", "rb") as f:
+    clause_data = pickle.load(f)
 
 # dictionary for book index and abbreviation
 nt_dict = {
@@ -66,7 +67,7 @@ def gen_stacked_bar(num_bars = 50, match_threshold = 5, bible_ordered = True):
     # format data from file
     occur_dict = {}
     for clause in clause_data:
-        line_num, versemap = clause[0], clause[1]
+        line_num, versemap = clause.identifier, clause.verses
         verse_data = list(versemap.items())
         verse_data.sort(key=lambda x: x[1], reverse = True)
         
@@ -186,7 +187,7 @@ def gen_graph(line_num, verse_data, num_bars = 50, match_threshold = 0):
 def gen_bars(max_num = 99999999, num_bars = 10, min_Thresh = 3):
     graph_count = 0
     for clause in clause_data:
-        line_num, versemap = clause[0], clause[1]
+        line_num, versemap = clause.identifier, clause.verses
         if graph_count >= max_num:
             break
         verse_data = list(versemap.items())
@@ -204,4 +205,5 @@ def format_verse(vrs_str):
 
 # print(nt_dict[format_verse("Matthew028019")[0]][1])
 gen_stacked_bar(20, 8, True)
+gen_bars(3, 10, 8)
 
