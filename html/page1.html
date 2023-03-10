@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Center for New Testament Restoration</title>
+    <link rel="stylesheet" href="../css/page1.css" />
+    <script src="../js/fetch-doc.js" defer></script>
+    <script src="../js/call-python.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.22.1/full/pyodide.js"></script>
+  </head>
+
+  <body>
+    <div class="flex-col" id="main-col">
+      <header>
+        <nav><!-- add websites navbar here --></nav>
+      </header>
+      <main>
+        <div id="input-section">
+          <div class="flex-col" id="main-col">
+            <h1>Greek New Testament Verse Finder</h1>
+            <div class="container">
+              <textarea id="text-input"></textarea>
+              <label for="file-input">Upload Document</label>
+              <input type="file" id="file-input" accept=".txt" />
+              <input type="submit" id="upload-button" value="Submit">
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <p>&copy; 2023 Center for New Testament Restoration</p>
+      </footer>
+    </div>
+  </body>
+</html>
