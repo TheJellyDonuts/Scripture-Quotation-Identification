@@ -32,7 +32,7 @@ To analyze multiple files containing Greek text:
 ### GUI:
 1. Run the GUI: `python <gui_filepath>/gui.py` (ensure that the [prerequisites](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification#prerequisites) are fulfilled)
 2. Use your preferred method to input the Greek quotation.
-3. Click the `Find Verses` button to analyze the quotation for potenial verse references.
+3. Click the `Find Verses` button to analyze the quotation for potential verse references.
 
 ### WUI:
 Work in progress. Needs further server development.
