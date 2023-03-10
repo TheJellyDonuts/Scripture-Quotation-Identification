@@ -20,6 +20,12 @@ The output is described right above the return statement
 import re
 import diacritical
 
+# Returns true if string contains a number
+def contains_number(s):
+    pattern = r'\d+'
+    match = re.search(pattern, s)
+    return bool(match)
+
 # remove all items from a list with a given value 
 def remove_values_from_list(the_list, val):
    return [value for value in the_list if value != val]
@@ -33,15 +39,44 @@ def parse_greek(input_file):
         raw_lines = f.readlines()
 
     # find lines
+    line_counter = 1
+    first_line_has_num = False
     clauses = []
     for line in raw_lines:
+        clause_counter = 1
         line_num, txt = line.split(" ", 1)
+        # If the first line doesn't have a number
+        # Set first_line_has_num to false and update the line number and line to appropriate values
+        if (not contains_number(line_num) and line_counter==1):
+            first_line_has_num = False
+            # line_num = str(line_counter) + "." + str(clause_counter)
+            txt = line
+            line_counter += 1
+        # If the first line has a number, set first_line_has_num to true
+        elif (contains_number(line_num) and line_counter==1):
+            first_line_has_num = True
+        # If the first line has a number and the current line has a number, exit the if statement
+        elif (first_line_has_num and contains_number(line_num)):
+            break
+        # If the first did not have a number and the current line does not have a number
+        # increment the line number 
+        elif (not(first_line_has_num) and not contains_number(line_num)):
+            # line_num = str(line_counter) + "." + str(clause_counter)
+            txt = line
+            line_counter += 1
+        else:
+            raise Exception("Invalid Line Number Input")
+
         delimiters = []
         for delim in re.finditer("·|\.|\;", txt):
             delimiters.append(txt[delim.start()])
         line_clauses = re.split("·|\.|\;", txt)
 
         for i in range(len(line_clauses) - 1):
+            # If the file did not provide line numbers, this sets line numbers
+            if( not(first_line_has_num)):
+                line_num = str(line_counter) + "." + str(clause_counter)
+                clause_counter+=1
             
             # find words
             words = line_clauses[i].split(" ")
