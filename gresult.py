@@ -31,3 +31,9 @@ class gresult():
     
     def set_verses(self, verses):
         self.verses = verses
+
+    def __str__(self):
+        s = f"Clause: {self.clause}\n"
+        s += f"\tIdentifier: {self.identifier}\n"
+        s += f"\tVerses: {self.verses}\n"
+        return s
