@@ -30,6 +30,8 @@ import prob_data
 import prob_analysis
 
 # Create a temp file for greek input text
+
+
 def read_in_greek(original_greek: str):
     temp_file = open("original_greek.txt", "w")
     temp_file.write(original_greek)
@@ -37,6 +39,8 @@ def read_in_greek(original_greek: str):
     return temp_file.name()
 
 # Sanitize input file/text BEFORE ANYTHING ELSE
+
+
 def sanitize_input(input: str, is_file: bool):
     extension: str = os.path.splitext(input)[1]
     if is_file:
@@ -53,6 +57,8 @@ def sanitize_input(input: str, is_file: bool):
         return
 
 # Do the probability analysis
+
+
 def analyze_data(filename: str):
     # Parse the input and generate probabilit data
     prob_data.synthesize(filename)
@@ -61,6 +67,8 @@ def analyze_data(filename: str):
     return output_list
 
 # Dump the analysis output into a text file
+
+
 def generate_output(input_filename: str, output_list: list):
     input_filename = os.path.basename(input_filename)
     #  Create output file
@@ -71,16 +79,15 @@ def generate_output(input_filename: str, output_list: list):
         output_filename = os.path.splitext(input_filename)[0] + "_analysis.txt"
     output_rel_path = "./output/"
     output_file_path = os.path.join(output_rel_path, output_filename)
-    output_file = open(output_file_path, "w")
-
-    # Write analysis results to output file
-    # TODO: Update this write loop to collect up to top three verses for each clause and display them
-    versecount: int = 0
-    for i in range(output_list.__len__()):
-      # Write the next clause
-      output_file.write(output_list[i])
-      # Write the verse that best matches it
-      output_file.write(output_list[i])
+    with open(output_file_path, "w", errors="ignore") as f:
+        # Write analysis results to output file
+        # TODO: Update this write loop to collect up to top three verses for each clause and display them
+        versecount: int = 0
+        for i in range(output_list.__len__()):
+            # Write the next clause
+            f.write(output_list[i])
+            # Write the verse that best matches it
+            f.write(output_list[i])
 
     # Close file and inform user
     print("Quotation analyzed.")
@@ -90,48 +97,50 @@ def generate_output(input_filename: str, output_list: list):
 
 # Run the interface through the command line
 def cli_process():
-  # Get arguments
-  args = sys.argv
+    # Get arguments
+    args = sys.argv
 
-  # Verify CLI usage
-  l = args.__len__()
-  if l < 3 or (args[1] == "-f" and l != 3) or (args[1] == "-t" and l != 3):
-    print("Usage: python cli.py -f <filepath>")
-    print("OR     python cli.py -t \"<quotation text>\"")
-    print("OR     python cli.py -b <filepath> <filepath> ...")
-    exit(1)
-  
-  # Sanitize input and grab filename(s)
-  input_filename = []
-  if args[1] == "-f":
-    sanitize_input(args[2], True)
-    input_filename.append(args[2])
-  elif args[1] == "-t":
-    sanitize_input(args[2], False)
-    input_filename.append(read_in_greek(args[2]))
-  elif args[1] == "-b":
-    for i in range(2, args.__len__()):
-      sanitize_input(args[i], True)
-      input_filename.append(args[i])
+    # Verify CLI usage
+    l = args.__len__()
+    if l < 3 or (args[1] == "-f" and l != 3) or (args[1] == "-t" and l != 3):
+        print("Usage: python cli.py -f <filepath>")
+        print("OR     python cli.py -t \"<quotation text>\"")
+        print("OR     python cli.py -b <filepath> <filepath> ...")
+        exit(1)
 
-  # Kowalski, analysis
-  for i in range(input_filename.__len__()):
-    print(input_filename[i])
-    out_list = analyze_data(input_filename[i])
+    # Sanitize input and grab filename(s)
+    input_filename = []
+    if args[1] == "-f":
+        sanitize_input(args[2], True)
+        input_filename.append(args[2])
+    elif args[1] == "-t":
+        sanitize_input(args[2], False)
+        input_filename.append(read_in_greek(args[2]))
+    elif args[1] == "-b":
+        for i in range(2, args.__len__()):
+            sanitize_input(args[i], True)
+            input_filename.append(args[i])
 
-    # Print analysis results
-    output = ""
-    for char in out_list:
-      output+= char
-    print(output)
+    # Kowalski, analysis
+    for i in range(input_filename.__len__()):
+        print(input_filename[i])
+        out_list = analyze_data(input_filename[i])
 
-    generate_output(input_filename[i], out_list)
+        # Print analysis results
+        output = ""
+        for char in out_list:
+            output += char
+        print(output)
 
-    # Cleanup
-    if os.path.isfile("original_greek.txt"):
-        os.remove("original_greek.txt")
+        generate_output(input_filename[i], out_list)
+
+        # Cleanup
+        if os.path.isfile("original_greek.txt"):
+            os.remove("original_greek.txt")
 
 # Run the interface through the web app
+
+
 def web_process(input: str):
     sanitize_input(input)
     f = read_in_greek(input)
