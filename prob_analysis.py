@@ -56,9 +56,9 @@ def simple_analysis(include_clause=False):
     
 # performs an average analysis, which finds the average number and standard deviation
 # of occurences and only selects verses with an occurence greater than the 
-# average + stdev
+# average + (stdev*num_sd)
 # returns a list of results by clause (the outtext+=... line)
-def average_analysis(include_clause=False):
+def average_analysis(include_clause=False, num_sd=1):
     outtext = []
     clause_res = load_prob_raw()
     for clause in clause_res:
@@ -67,41 +67,44 @@ def average_analysis(include_clause=False):
         versedata.sort(key=lambda x: x[1], reverse = True)
         occurrences = [x[1] for x in versedata]
 
-        # calculate the average and standard deviation
-        av = np.average(occurrences)
-        sd = np.std(occurrences)
-        above = []
-
         # if no words in common with any verse
         if len(versedata) == 0:
             continue
 
+        # calculate the average and standard deviation
+        av = math.ceil(np.average(occurrences))
+        sd = math.ceil(np.std(occurrences))
+        above = []
+
         # if given verse's occurences is outside of the stdev of the average,
         # add to list
         for v in versedata:
-            if v[1] > math.ceil(av + sd):
-                above += v
+            if v[1] > av + sd*num_sd:
+                above += [v]
         
-        # if there are no verses above av+stdev, grab the max and send to outtext
-
+        # if the include_clause printing option is enabled
         if include_clause:
-            outtext += clause.clause
+            outtext += "\n" + clause.clause
+
+            # if there are no verses above av+stdev, grab the max and send to outtext
             if len(above) == 0:
                 verse, n = versedata[0]
                 outtext += [f'\n\tNo outstanding verse matches found; closest match is {verse}.']
             
             for v in above:
-                verse, n = v[0]
+                verse, n = v
                 outtext += [f'\n\t{verse} has {n} word matches ({n-av} above average)!']
-
+ 
+        # if the include_clause printing option is disabled
         else:
+            # if there are no verses above av+stdev, grab the max and send to outtext
             if len(above) == 0:
                 verse, n = versedata[0]
                 outtext += [f'Line {linenum} has no outstanding verse matches; closest match is {verse}.']
             
             for v in above:
-                verse, n = v[0]
+                verse, n = v
                 outtext += [f'Line {linenum} is most likely {verse}, with {n} word matches ({n-av} above average)!']
 
-        outtext += 'n'
+        outtext += '\n'
     return outtext

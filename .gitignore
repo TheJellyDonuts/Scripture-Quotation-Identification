@@ -1,2 +1,5 @@
 /__pycache__
 original_greek.txt
+/data/filtered.txt
+/data/not_found_words.txt
+/data/prob_analysis_raw.pkl
