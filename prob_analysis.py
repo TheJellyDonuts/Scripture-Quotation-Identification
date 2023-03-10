@@ -58,7 +58,7 @@ def simple_analysis(include_clause=False):
 # of occurences and only selects verses with an occurence greater than the 
 # average + (stdev*num_sd)
 # returns a list of results by clause (the outtext+=... line)
-def average_analysis(include_clause=False, num_sd=1):
+def average_analysis(include_clause=False, num_sd=3):
     outtext = []
     clause_res = load_prob_raw()
     for clause in clause_res:
