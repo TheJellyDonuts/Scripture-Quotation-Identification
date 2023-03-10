@@ -26,6 +26,7 @@ Dev Notes:
 # Import libraries
 import sys
 import os.path
+import bleach
 import prob_data
 import prob_analysis
 
@@ -49,6 +50,8 @@ def sanitize_input(input: str, is_file: bool):
             raise Exception("File does not exist")
         elif extension != ".txt":
             raise Exception("Only .txt files are acceptable.")
+        elif os.stat(input).st_size > 1073741824:
+            raise Exception("File size must be smaller than 1GB")
         else:
             # TODO: Handle malicious file catching
             return
