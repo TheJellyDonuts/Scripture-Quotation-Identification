@@ -16,16 +16,17 @@ Given a scripture quotation from a church father's writings[^1], identify the mo
 ## <ins>Instructions for Use</ins>
 ### CLI:
 To analyze a string of raw Greek text:
+> NOTE: the current working directory should be in the folder where `SQI.exe` is located
 
-    python <cli_filepath>/cli.py -t "<Greek_text>"
+`SQI.exe -t "<Greek_text>"`
 
 To analyze a file containing Greek text:
 
-    python <cli_filepath>/cli.py -f <Greek_filepath>
+`SQI.exe -f <Greek_filepath>`
 
 To analyze multiple files containing Greek text:
 
-    python <cli_filepath>/cli.py -b <Greek_filepath_1> <Greek_filepath_2> ...
+`SQI.exe -b <Greek_filepath_1> <Greek_filepath_2> ...`
 
 ### GUI:
 1. Run the GUI: `python <gui_filepath>/gui.py`
