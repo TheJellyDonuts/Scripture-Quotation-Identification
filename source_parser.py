@@ -19,7 +19,7 @@ The output is described right above the return statement
 
 import re
 import diacritical
-import gclause
+import gclause as gc
 
 # remove all items from a list with a given value 
 def remove_values_from_list(the_list, val):
@@ -36,7 +36,7 @@ def parse_greek(input_file):
     # find lines
     clauses = []
     for line in raw_lines:
-        lineNum, txt = line.split(" ", 1)
+        line_num, txt = line.split(" ", 1)
         delimiters = []
         for delim in re.finditer("·|\.|\;", txt):
             delimiters.append(txt[delim.start()])
@@ -67,16 +67,11 @@ def parse_greek(input_file):
             words = remove_values_from_list(words, "αι")
             words = remove_values_from_list(words, "και")
 
-            res = gclause.gclause()
-            res = res.set_identifier(lineNum)
-            res = res.set_words(words)
-            res = res.set_delimiter(delimiters[i])
-            res = res.set_clause(" ".join(words))
-            #clauses.append({"line_number": lineNum, "words": words, "delimiters": delimiters[i]})
-            # NOTE: the clauses have three values
-            # clause[0] gives the line num string from the inputted txt file (the two period separated numbers shown at the beginning of a line)
-            # clause[1] gives the array to find words in
-            # clause[2] gives the punctuation at the end of the clause
+            res = gc.gclause()
+            res.set_identifier(line_num)         # set the prefix of the line
+            res.set_words(words)                # list of the Greek words
+            res.set_delimiter(delimiters[i])    # punctuation at end of sentence
+            res.set_clause(line_num + " " + " ".join(words) + delimiters[i])     # full clause
 
     # return clause list
     return clauses

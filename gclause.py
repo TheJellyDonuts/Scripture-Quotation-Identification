@@ -33,3 +33,11 @@ class gclause():
 
     def set_delimiter(self, delim):
         self.delimiter = delim
+
+    def __str__(self):
+        s = ''
+        s += 'Clause: ' + self.clause + '; '
+        s += 'Identifier: ' + self.identifier  + '; '
+        s += 'Words: ' + ', '.join(self.words)  + '; '
+        s += 'Delimiter: ' + self.delimiter
+        return s
