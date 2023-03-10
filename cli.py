@@ -126,21 +126,12 @@ def cli_process():
   for i in range(input_filename.__len__()):
     print(input_filename[i])
     out_list = analyze_data(input_filename[i])
-    # print(out_list)
-    # # Print analysis results
-    # output = ""
-    # for char in out_list:
-    #   output+= char
-    # print(output)
-
-    # print(input_filename[1])
-    # out_list = analyze_data(input_filename[1])
 
     # Print analysis results
-    # output = ""
-    # for char in out_list:
-    #   output+= char
-    # print(output)
+    output = ""
+    for char in out_list:
+      output+= char
+    print(output)
 
     # Cleanup
     if os.path.isfile("original_greek.txt"):
