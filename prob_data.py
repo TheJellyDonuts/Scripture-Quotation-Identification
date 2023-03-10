@@ -40,7 +40,6 @@ import gresult
 
 # perform the data synthesis
 def synthesize(input_file):
-    clauses, words = [], []
     clauses = source_parser.parse_greek(input_file)
 
     # open data 
@@ -56,7 +55,6 @@ def synthesize(input_file):
 
 
     cache = {}      # word: [verse, occurences],[verse, occurences],...]
-
     versemap = {}   # {verse: occurences, ...}
     not_found = {}  # {word: occurences, ...}
     output = []     # {line#, [[verse, occurences],[verse, occurences],...], ...}
@@ -92,7 +90,7 @@ def synthesize(input_file):
 
     # go through a clause for each word
     for clause in clauses:
-        for word in clause["words"]:
+        for word in clause.words:
             found = False
 
             # search cache for the word; if found, increment respective
@@ -109,7 +107,7 @@ def synthesize(input_file):
             # if word not found in cache or wordlist, add to not_found
             # list. Keep track of occurences
             if not found:
-                if word == '’' or word == '':
+                if word == '’' or word == '' or word == ' ' or word == None:
                     continue
                 if word not in not_found:
                     not_found.update({word: 1})
@@ -120,8 +118,8 @@ def synthesize(input_file):
 
         # add data to output and clear cache
         res = gresult.gresult()
-        res = res.set_id(clause["line_number"])
-        res = res.set_verses(versemap.copy())
+        res.set_id(clause["line_number"])
+        res.set_verses(versemap.copy())
         output.append(res)
 
         cache.clear()
