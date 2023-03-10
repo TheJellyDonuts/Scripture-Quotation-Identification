@@ -4,7 +4,7 @@ PyInstaller.__main__.run([
     'cli.py',
     '--onefile',
     '--windowed',
-#    '--icon=icon.ico',
+    '--icon=media/peteter.ico',
     '--name=SQI',
     '--distpath=./',
     '--workpath=./.build',
