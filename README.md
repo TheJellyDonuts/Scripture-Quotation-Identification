@@ -6,7 +6,7 @@ Given a scripture quotation from a church father's writings[^1], identify the mo
 
 ---
 
-## <ins>Prerequisites:</ins>
+## <ins>Prerequisites</ins>
 1. Python 3.X (3.10+ was used in development)
 2. Python libraries detailed in `requirements.txt`. To install the libraries collectively, run the following terminal command:
 > `pip -r requirements.txt`
