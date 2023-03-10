@@ -19,6 +19,7 @@ The output is described right above the return statement
 
 import re
 import diacritical
+import gclause
 
 # remove all items from a list with a given value 
 def remove_values_from_list(the_list, val):
@@ -66,8 +67,12 @@ def parse_greek(input_file):
             words = remove_values_from_list(words, "αι")
             words = remove_values_from_list(words, "και")
 
-
-            clauses.append({"line_number": lineNum, "words": words, "delimiters": delimiters[i]})
+            res = gclause.gclause()
+            res = res.set_identifier(lineNum)
+            res = res.set_words(words)
+            res = res.set_delimiter(delimiters[i])
+            res = res.set_clause(" ".join(words))
+            #clauses.append({"line_number": lineNum, "words": words, "delimiters": delimiters[i]})
             # NOTE: the clauses have three values
             # clause[0] gives the line num string from the inputted txt file (the two period separated numbers shown at the beginning of a line)
             # clause[1] gives the array to find words in

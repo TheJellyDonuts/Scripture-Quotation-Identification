@@ -119,7 +119,8 @@ def synthesize(input_file):
         # TODO: deal with punctuation?
 
         # add data to output and clear cache
-        res = gresult().set_id(clause["line_number"])
+        res = gresult.gresult()
+        res = res.set_id(clause["line_number"])
         res = res.set_verses(versemap.copy())
         output.append(res)
 

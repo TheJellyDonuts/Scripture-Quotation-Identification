@@ -17,6 +17,7 @@ class gclause():
         self.clause = ""
         self.identifier = ""
         self.words = []
+        self.delimiter = ""
 
     def set_clause(self, clause):
         self.clause = clause
@@ -26,3 +27,9 @@ class gclause():
 
     def add_word(self, word):
         self.words += word
+
+    def set_words(self, word):
+        self.words = word
+
+    def set_delimiter(self, delim):
+        self.delimiter = delim
