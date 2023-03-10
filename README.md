@@ -2,37 +2,43 @@
 
 Given a scripture quotation from a church father's writings[^1], identify the most likely verses being quoted by that quotation, ideally with a level of confidence according to the algorithms we implemented.
 
-<add stuff about using the various interfaces>
-
 ---
 
 ## <ins>Prerequisites</ins>
+**These prerequisites are only necessary if running individual .py files**
 1. Python 3.X (3.10+ was used in development)
 2. Python libraries detailed in `requirements.txt`. To install the libraries collectively, run the following terminal command:
-> `pip -r requirements.txt`
+    - `pip -r requirements.txt`
 
 ---
 
 ## <ins>Instructions for Use</ins>
 ### CLI:
 To analyze a string of raw Greek text:
+> NOTE: the current working directory should be in the folder where `SQI.exe` is located
 
-    python <cli_filepath>/cli.py -t "<Greek_text>"
+`SQI.exe -t "<Greek_text>"`
 
 To analyze a file containing Greek text:
 
-    python <cli_filepath>/cli.py -f <Greek_filepath>
+`SQI.exe -f <Greek_filepath>`
 
 To analyze multiple files containing Greek text:
 
-    python <cli_filepath>/cli.py -b <Greek_filepath_1> <Greek_filepath_2> ...
+`SQI.exe -b <Greek_filepath_1> <Greek_filepath_2> ...`
 
 ### GUI:
-1. Run the GUI: `python <gui_filepath>/gui.py`
+1. Run the GUI: `python <gui_filepath>/gui.py` (ensure that the [prerequisites](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification#prerequisites) are fulfilled before running!)
 2. Use your preferred method to input the Greek quotation.
-3. Click the `Find Verses` button to analyze the quotation for potenial verse references.
+3. Click the `Find Verses` button to analyze the quotation for potential verse references.
 
 ### WUI:
-Work in progress. Needs further server development.
+*Work in progress. Needs further server development.*
+
+---
+
+## <ins>[Wiki](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification/wiki)</is>
+Visit the [Wiki](https://github.com/TheJellyDonuts/Scripture-Quotation-Identification/wiki) to learn more about how our program parses and analyzes all of the information! Documentation is available for all of the major classes.
+
 
 [^1]: Link to apostolic-fathers repo: https://github.com/jtauber/apostolic-fathers
