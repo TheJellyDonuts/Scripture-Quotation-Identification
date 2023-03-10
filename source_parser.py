@@ -72,6 +72,7 @@ def parse_greek(input_file):
             res.set_words(words)                # list of the Greek words
             res.set_delimiter(delimiters[i])    # punctuation at end of sentence
             res.set_clause(line_num + " " + " ".join(words) + delimiters[i])     # full clause
+            clauses.append(res)
 
     # return clause list
     return clauses
