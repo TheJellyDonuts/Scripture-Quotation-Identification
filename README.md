@@ -28,10 +28,7 @@ To analyze multiple files containing Greek text:
     python <cli_filepath>/cli.py -b <Greek_filepath_1> <Greek_filepath_2> ...
 
 ### GUI:
-1. Run the GUI:
-
-    python <gui_filepath>/gui.py
-    
+1. Run the GUI: `python <gui_filepath>/gui.py`
 2. Use your preferred method to input the Greek quotation.
 3. Click the `Find Verses` button to analyze the quotation for potenial verse references.
 
