@@ -105,10 +105,3 @@ for value in data_array:
 
 # Print Greek Word list as a pickle File
 save_object(greek_words, 'data/word_list.pkl')
-
-# with open('data/word_list.json', 'w') as f:
-#     f.writelines("[")
-#     lst = [word.export_json()+",\n" for word in greek_words]
-#     lst[-1] = lst[-1][:-2]+"\n"
-#     f.writelines(lst)
-#     f.writelines("]")
