@@ -5,7 +5,7 @@ PyInstaller.__main__.run([
     '--onefile',
     '--windowed',
 #    '--icon=icon.ico',
-    '--name=Scripture-Quotation-Identification',
+    '--name=SQI',
     '--distpath=./',
     '--workpath=./.build',
 ])
