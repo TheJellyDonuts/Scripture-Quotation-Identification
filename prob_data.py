@@ -44,21 +44,17 @@ def save_object(obj, filename):
     with open(filename, 'wb') as outp:  # Overwrites any existing file.
         pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
 
+# use pickle to read objects directly from a file
+def open_object(filename):
+    with open(filename, 'rb') as f:
+        return pickle.load(f)
+
 # perform the data synthesis
 def synthesize(input_file):
     clauses = source_parser.parse_greek(input_file)
 
     # open parsed New Testament data (containing gword objects) 
-    with open('data/word_list.json', 'r') as f:
-        data = json.load(f)
-
-    # place word data in list of objects
-    words = []
-    for word in data:
-        new_word_obj = gword.gword()
-        new_word_obj.import_json(word)
-        words.append(new_word_obj)
-
+    words = open_object('data/word_list.pkl')
 
     cache = {}      # word: [verse, occurences],[verse, occurences],...]
     versemap = {}   # {verse: occurences, ...}
@@ -135,6 +131,6 @@ def synthesize(input_file):
     # output
     save_object(output, 'data/prob_analysis_raw.pkl')
 
-    with open("data/not_found_words.txt", 'w', errors='ignore') as f:
+    with open("data/not_found_words.txt", 'w', encoding='utf-8') as f:
         f.writelines("Words not found:")
         f.writelines(not_found)
