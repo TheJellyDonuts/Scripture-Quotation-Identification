@@ -1,6 +1,6 @@
 # Scripture-Quotation-Identification
 
-Given a scripture quotation from a church father's writings[^1], identify the most likely verses being quoted by that quotation, each with a percent confidence according to the algorithms we implemented.
+Given a scripture quotation from a church father's writings[^1], identify the most likely verses being quoted by that quotation, ideally with a level of confidence according to the algorithms we implemented.
 
 <add stuff about using the various interfaces>
 
