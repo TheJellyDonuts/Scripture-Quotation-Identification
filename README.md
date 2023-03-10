@@ -32,4 +32,7 @@ To analyze multiple files containing Greek text:
 2. Use your preferred method to input the Greek quotation.
 3. Click the `Find Verses` button to analyze the quotation for potenial verse references.
 
+### WUI:
+Work in progress. Needs further server development.
+
 [^1]: Link to apostolic-fathers repo: https://github.com/jtauber/apostolic-fathers
