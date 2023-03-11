@@ -119,7 +119,7 @@ def cli_process():
 
     # Kowalski, analysis
     for i in range(input_filename.__len__()):
-        print(input_filename[i])
+        print("Analyzing", input_filename[i], "...")
 
         # Checks if Standard Deviation Flag is used
         if (args.sd):
@@ -152,6 +152,11 @@ def web_process(input: str):
     os.remove("original_greek.txt")
     return o
 
+def gui_process(input: str):
+    sanitize_input(input, True)
+    o = analyze_data(input)
+    return o
 
 # Actually execute the cli process for cli users
-cli_process()
+if __name__ == "__main__":
+  cli_process()
