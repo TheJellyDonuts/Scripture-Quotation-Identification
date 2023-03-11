@@ -119,7 +119,7 @@ def cli_process():
 
     # Kowalski, analysis
     for i in range(input_filename.__len__()):
-        print(input_filename[i])
+        print("Analyzing", input_filename[i], "...")
 
         # Checks if Standard Deviation Flag is used
         if (args.sd):
