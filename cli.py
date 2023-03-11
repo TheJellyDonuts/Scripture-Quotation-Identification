@@ -34,7 +34,7 @@ import argparse
 
 
 def read_in_greek(original_greek: str):
-    temp_file = open("original_greek.txt", "w")
+    temp_file = open("original_greek.txt", "w", encoding="UTF-8")
     temp_file.write(original_greek)
     temp_file.close()
     return temp_file.name
