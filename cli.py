@@ -26,22 +26,17 @@ Dev Notes:
 # Import libraries
 import sys
 import os.path
-import prob_data
-import prob_analysis
+import src.prob_data as prob_data
+import src.prob_analysis as prob_analysis
 import argparse
 
 # Create a temp file for greek input text
-
-
 def read_in_greek(original_greek: str):
-    temp_file = open("original_greek.txt", "w")
-    temp_file.write(original_greek)
-    temp_file.close()
-    return temp_file.name
+    with open("original_greek.txt", "w", encoding="utf-8") as f:
+        f.write(original_greek)
+        return f.name
 
 # Sanitize input file/text BEFORE ANYTHING ELSE
-
-
 def sanitize_input(input: str, is_file: bool):
     extension: str = os.path.splitext(input)[1]
     if is_file:
@@ -60,8 +55,6 @@ def sanitize_input(input: str, is_file: bool):
         return
 
 # Do the probability analysis
-
-
 def analyze_data(filename: str, sd=3):
     # Parse the input and generate probabilit data
     prob_data.synthesize(filename)
@@ -70,8 +63,6 @@ def analyze_data(filename: str, sd=3):
     return output_list
 
 # Dump the analysis output into a text file
-
-
 def generate_output(input_filename: str, output_list: list):
     input_filename = os.path.basename(input_filename)
     #  Create output file
@@ -80,7 +71,7 @@ def generate_output(input_filename: str, output_list: list):
         output_filename = "quotation_analysis.txt"
     else:
         output_filename = os.path.splitext(input_filename)[0] + "_analysis.txt"
-    output_rel_path = "./output/"
+    output_rel_path = "output/"
     output_file_path = os.path.join(output_rel_path, output_filename)
     with open(output_file_path, "w", encoding='utf-8') as f:
         # Write analysis results to output file

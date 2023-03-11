@@ -13,8 +13,6 @@ is added to the dict.
 The verse format is BookCCCVVV. Ex: Matthew010002 (Matthew 10:2)
 '''
 
-import json
-
 class gword:
     def __init__(self, word=""):
         self.word = word
