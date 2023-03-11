@@ -9,7 +9,7 @@ into a list of gword objects and writes that to wordList.json.
 '''
 
 import csv
-import gword
+import src.gword as gword
 import pickle
 
 books = {
@@ -71,7 +71,7 @@ def change_verse_id(array):
         row[0] = new_verse_id
     return array
 
-filename = './data/words.csv'
+filename = 'data/words.csv'
 # Removes BOM at the beginning of the file
 remove_bom(filename)
 
@@ -104,4 +104,4 @@ for value in data_array:
         greek_words.append(new_word)
 
 # Print Greek Word list as a pickle File
-save_object(greek_words, './data/word_list.pkl')
+save_object(greek_words, 'data/word_list.pkl')

@@ -25,7 +25,7 @@ Dev Help:
 # Import the gui library
 import PySimpleGUI as simpleGUI
 import os.path
-import source_parser
+import src.source_parser as source_parser
 
 # Create variables to hold relevant values
 quote_file_name = None

@@ -33,10 +33,10 @@ At the completion of each clause, the versemap results are pushed to an output l
     cache and versemap.
 '''
 
-import source_parser
-import gresult
+import src.source_parser as source_parser
+import src.gresult as gresult
+import src.gword as gword
 import pickle
-import gword
 
 # use pickle to save objects directly to a file
 def save_object(obj, filename):
@@ -53,7 +53,7 @@ def synthesize(input_file):
     clauses = source_parser.parse_greek(input_file)
 
     # open parsed New Testament data (containing gword objects) 
-    words = open_object('./data/word_list.pkl')
+    words = open_object('data/word_list.pkl')
 
     cache = {}      # word: [verse, occurences],[verse, occurences],...]
     versemap = {}   # {verse: occurences, ...}
@@ -128,8 +128,8 @@ def synthesize(input_file):
         versemap.clear()
 
     # output
-    save_object(output, './data/prob_analysis_raw.pkl')
+    save_object(output, 'data/prob_analysis_raw.pkl')
 
-    with open("./data/not_found_words.txt", 'w', encoding='utf-8') as f:
+    with open("data/not_found_words.txt", 'w', encoding='utf-8') as f:
         f.writelines("Words not found:")
         f.writelines(not_found)

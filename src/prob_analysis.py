@@ -20,7 +20,7 @@ import pickle
 
 # Function opens prob_analysis_raw.pkl and returns the load
 def load_prob_raw():
-    with open("./data/prob_analysis_raw.pkl", "rb") as inp:
+    with open("data/prob_analysis_raw.pkl", "rb") as inp:
         return pickle.load(inp)
 
 # performs a simple analysis, which finds the verse with the maximum number of
@@ -28,7 +28,7 @@ def load_prob_raw():
 # returns a list of results by clause (the outtext+=... line)
 def simple_analysis(include_clause=False):
     clause_res = load_prob_raw()
-    with open("./data/prob_analysis_raw.pkl", "rb") as inp:
+    with open("data/prob_analysis_raw.pkl", "rb") as inp:
         clause_res = pickle.load(inp)
     outtext = []
     for clause in clause_res:

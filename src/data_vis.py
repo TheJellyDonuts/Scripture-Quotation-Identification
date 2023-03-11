@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import pickle
 
 # open file to use
-with open("./data/prob_analysis_raw.pkl", "rb") as f:
+with open("data/prob_analysis_raw.pkl", "rb") as f:
     clause_data = pickle.load(f)
 
 # dictionary for book index and abbreviation
