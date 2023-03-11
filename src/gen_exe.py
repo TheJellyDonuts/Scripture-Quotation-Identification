@@ -12,7 +12,7 @@ import PyInstaller.__main__
 PyInstaller.__main__.run([
     'cli.py',
     '--onefile',
-    '--windowed',
+    '--nowindowed',
     '--icon=./media/peteter.ico',
     '--name=SQI',
     '--distpath=./',

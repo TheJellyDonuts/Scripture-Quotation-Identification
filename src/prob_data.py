@@ -38,6 +38,9 @@ import src.gresult as gresult
 import src.gword as gword
 import pickle
 
+import sys
+sys.modules['gword'] = gword
+
 # use pickle to save objects directly to a file
 def save_object(obj, filename):
     with open(filename, 'wb') as outp:  # Overwrites any existing file.
