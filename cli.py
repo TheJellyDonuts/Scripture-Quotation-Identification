@@ -143,13 +143,20 @@ def cli_process():
 
 # Run the interface through the web app
 def web_process(input: str):
-    sanitize_input(input)
+    sanitize_input(input, False)
     f = read_in_greek(input)
     o = analyze_data(f)
     # Cleanup
     os.remove("original_greek.txt")
     return o
 
+# Run the interface through the gui
+def gui_process(input: str):
+  sanitize_input(input, True)
+  o = analyze_data(input)
+  return o
 
 # Actually execute the cli process for cli users
-cli_process()
+if __name__ == "__main__":
+  cli_process()
+

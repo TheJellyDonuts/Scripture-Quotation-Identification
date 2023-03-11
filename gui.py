@@ -26,6 +26,8 @@ Dev Help:
 import PySimpleGUI as simpleGUI
 import os.path
 import source_parser
+import prob_analysis
+from cli import gui_process
 
 # Create variables to hold relevant values
 quote_file_name = None
@@ -41,7 +43,7 @@ input_column = [
     simpleGUI.Text("Select quotation file:"),
     # Allow the user to choose a file to hold the input quotation
     simpleGUI.Input(key = "-QUOTATION_FILE-", enable_events = True),
-    simpleGUI.FileBrowse(button_text = "Browse", target = "-QUOTATION_FILE-", file_types=(("Text Files", "*.txt"))),
+    simpleGUI.FileBrowse(button_text = "Browse", target = "-QUOTATION_FILE-", file_types=((("Text Files", "*.txt"),))),
   ],
   [
     simpleGUI.Text("OR"),
@@ -64,7 +66,7 @@ output_column = [
   ],
   [
     # Create a window for displaying the matching verses
-    simpleGUI.Output(key = "-OUTPUT-"),
+    simpleGUI.Output(size = (80, 20), key = "-OUTPUT-"),
   ],
   [
     # Provide helpful buttons for the user
@@ -99,8 +101,9 @@ while True:
     quote_file_name = values["-QUOTATION_FILE-"]
     if os.path.isfile(quote_file_name):
       # Process the input file and display the matching verses for the quotation
-      verse_data = source_parser.parseGreek(quote_file_name)
-      window["-OUTPUT-"].update(verse_data)
+      verse_data = gui_process(quote_file_name)
+      verse_data_formatted = "".join(verse_data)
+      print(verse_data_formatted)#window["-OUTPUT-"].update(verse_data)
     else:
       # Throw an exception for a nonexistent file
       window["-OUTPUT-"].update("ERROR: File does not exist")
