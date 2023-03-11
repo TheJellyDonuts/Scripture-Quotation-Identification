@@ -99,16 +99,16 @@ while True:
   # Update the user's input file name
   elif event == "-QUOTATION_FILE-":
     quote_file_name = values["-QUOTATION_FILE-"]
-    if os.path.isfile(quote_file_name):
-      # Process the input file and display the matching verses for the quotation
-      verse_data = gui_process(quote_file_name)
-      verse_data_formatted = "".join(verse_data)
-      print(verse_data_formatted)#window["-OUTPUT-"].update(verse_data)
-    else:
+    if not os.path.isfile(quote_file_name):
       # Throw an exception for a nonexistent file
       window["-OUTPUT-"].update("ERROR: File does not exist")
   elif event == "-QUOTATION_TEXT-":
     quote_text = values["-QUOTATION_TEXT-"]
     window["-OUTPUT-"].update(quote_text)
+  elif event == "-SUBMIT-":
+    # Process the input file and display the matching verses for the quotation
+    verse_data = gui_process(quote_file_name)
+    verse_data_formatted = "".join(verse_data)
+    print(verse_data_formatted)
 
 window.close()
